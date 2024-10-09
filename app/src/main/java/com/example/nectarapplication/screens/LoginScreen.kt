@@ -27,6 +27,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
@@ -44,10 +45,19 @@ import com.example.nectarapplication.R
 @Composable
 fun LoginScreen() {
     Box(modifier = Modifier.fillMaxSize()){
+        Image(
+            painter = painterResource(id = R.drawable.fondologin),
+            contentDescription = "Onboarding Image",
+            contentScale = ContentScale.Crop,
+            modifier = Modifier.fillMaxSize()
+        )
         Column(modifier = Modifier
             .fillMaxSize()
             .padding(16.dp),
             verticalArrangement = Arrangement.Top){
+
+
+
 
             Spacer(modifier = Modifier.size(60.dp))
 
@@ -101,7 +111,9 @@ fun LoginScreen() {
 
             Row(modifier = Modifier.align(Alignment.CenterHorizontally)) {
                 Spacer(modifier = Modifier.size(10.dp))
-                Text(text = "Don't have an account? ",color = androidx.compose.ui.graphics.Color.Black, fontSize = 10.sp)
+                Text(text = "Don't have an account? ",
+                    color = androidx.compose.ui.graphics.Color.Black,
+                    fontSize = 10.sp)
                 GreenText("Sign up")
             }
            // Text(text = "Don't have an account? Sign up"+GreenText(),
