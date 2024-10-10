@@ -1,13 +1,13 @@
 package com.example.nectarapplication.data
 
 import androidx.compose.runtime.Immutable
+import androidx.compose.ui.graphics.Color
 
 @Immutable
 data class Products(
     val id: Int,
-    val image: String,
+    val image: Int,
     val title: String,
-    val price: Double,
-    val content: String,
-    val stock: Int = 0
+    val borderColor: Color,
+    val backgroundColor: Color
 )

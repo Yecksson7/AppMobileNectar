@@ -16,3 +16,9 @@ val BackgroundColor = Color(0xFFF4EDEB)
 
 
 val softGreen = Color(0xFF53B175)
+val softOrange = Color(0xFFF8A44C)
+val softPink = Color(0xFFF7A593)
+val softPurple = Color(0xFFD3B0E0)
+val softYellow = Color(0xFFFDE598)
+val softBlue = Color(0xFFB7DFF5)
+val softGrey = Color(0xFFF2F3F2)
