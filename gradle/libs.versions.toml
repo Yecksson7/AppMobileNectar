@@ -17,6 +17,11 @@ datastorePreferences = "1.1.1"  # Reemplaza con la versión que necesitas
 uiTextGoogleFontsVersion = "1.7.3"
 uiTextGoogleFonts = "1.7.3"
 datastorePreferencesCoreJvm = "1.1.1"
+retrofit = "2.11.0"
+converterGson = "2.11.0"
+okhttp = "5.0.0-alpha.14"
+lifecycleViewmodel = "2.8.6"
+lifecycleCommon = "2.8.6"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -42,6 +47,11 @@ androidx-datastore-preferences-core-jvm = { group = "androidx.datastore", name =
 androidx-ui-text-google-fonts = { group = "androidx.compose.ui", name = "ui-text-google-fonts", version.ref = "uiTextGoogleFonts" }
 androidx-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "runtimeLivedata" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "converterGson" }
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
+androidx-lifecycle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "lifecycleViewmodel" }
+androidx-lifecycle-common = { group = "androidx.lifecycle", name = "lifecycle-common", version.ref = "lifecycleCommon" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

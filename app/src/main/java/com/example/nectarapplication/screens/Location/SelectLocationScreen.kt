@@ -1,4 +1,4 @@
-package com.example.nectarapplication.screens
+package com.example.nectarapplication.screens.Location
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
@@ -29,6 +31,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.nectarapplication.R
+import com.example.nectarapplication.data.getListaArea
+import com.example.nectarapplication.data.getListaZona
 
 @Preview(showBackground = true)
 @Composable
@@ -57,16 +61,30 @@ fun SelectLocationScreen() {
                 modifier = Modifier.align(Alignment.CenterHorizontally)
             )
             Spacer(modifier = Modifier.size(20.dp) )
-            Text(text = "Swithch on your location to stay in tune with",
-                color = androidx.compose.ui.graphics.Color.Gray,
+            Text(text = "Switch on your location to stay in tune with",
+                color = Color.Gray,
                 modifier = Modifier.align(Alignment.CenterHorizontally))
 
             Text(text = "what's happening in your area",
-                color = androidx.compose.ui.graphics.Color.Gray,
+                color = Color.Gray,
                 modifier = Modifier.align(Alignment.CenterHorizontally))
+            Spacer(modifier = Modifier.size(50.dp) )
 
+            AddressDropdownMenu("Your Zone",getListaZona())
+            Spacer(modifier = Modifier.size(20.dp) )
+            AddressDropdownMenu("Your area",getListaArea())
 
-            AddressDropdownMenu()
+            Spacer(modifier = Modifier.size(60.dp) )
+            Button(onClick = { /*TODO*/ },
+                modifier = Modifier
+                    .align(Alignment.CenterHorizontally)
+                    .size(width = 250.dp, height = 50.dp),
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF53B175)))
+            {
+                Text("Submit",
+                    color = Color.White)
+            }
+
         }
     }
 }
@@ -74,8 +92,8 @@ fun SelectLocationScreen() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AddressDropdownMenu() {
-    val addresses = listOf("Address 1", "Address 2", "Address 3")
+fun AddressDropdownMenu(mensaje:String, listado: List<String>) {
+    val addresses = listado
     var expanded by remember { mutableStateOf(false) }
     var selectedAddress by remember { mutableStateOf(addresses[0]) }
 
@@ -88,14 +106,16 @@ fun AddressDropdownMenu() {
             value = selectedAddress,
             onValueChange = { },
             readOnly = true,
-            label = { Text("Your Zone") },
+            label = { Text(mensaje) },
             trailingIcon = {
                 ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
             },
             modifier = Modifier
                 .menuAnchor()
-                .fillMaxWidth(),colors = TextFieldDefaults.textFieldColors(
-                containerColor = androidx.compose.ui.graphics.Color.Transparent)
+                .fillMaxWidth(),colors = TextFieldDefaults.colors(
+                focusedContainerColor = Color.Transparent,   // Color cuando el campo está enfocado
+                unfocusedContainerColor = Color.Transparent  // Color cuando el campo no está enfocado
+            )
         )
         ExposedDropdownMenu(
             expanded = expanded,

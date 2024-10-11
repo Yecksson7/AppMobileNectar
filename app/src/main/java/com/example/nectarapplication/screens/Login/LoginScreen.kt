@@ -1,6 +1,5 @@
-package com.example.nectarapplication.screens
+package com.example.nectarapplication.screens.Login
 
-import android.widget.Space
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -13,7 +12,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -31,19 +29,25 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.nectarapplication.R
 
 
-@OptIn(ExperimentalMaterial3Api::class)
+
 @Preview(showBackground = true)
 @Composable
-fun LoginScreen() {
+fun LoginScreen(loginViewModel: LoginViewModel = viewModel()) {
+    val email by remember { mutableStateOf("") }
+    val password by remember { mutableStateOf("") }
+    val loginState = remember { loginViewModel.loginState }
+
     Box(modifier = Modifier.fillMaxSize()){
         Image(
             painter = painterResource(id = R.drawable.fondologin),
@@ -70,41 +74,48 @@ fun LoginScreen() {
             Spacer(modifier = Modifier.size(50.dp))
 
             Text("Sign in",
-                fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
+                fontWeight = FontWeight.Bold,
                 fontSize = 20.sp
                 )
             Spacer(modifier = Modifier.size(10.dp))
 
-            Text(text = "Enter your emails and password", fontSize = 13.sp, color = androidx.compose.ui.graphics.Color.Gray)
+            Text(text = "Enter your emails and password", fontSize = 13.sp, color = Color.Gray)
             Spacer(modifier = Modifier.size(40.dp))
 
-            Text(text = "Email",color = androidx.compose.ui.graphics.Color.Gray)
+            Text(text = "Email",color = Color.Gray)
+            EmailTextField(onEmailChange = { loginViewModel.email = it })
 
+
+/*
+Eliminar el código de la siguiente línea:
             TextField(value = "", onValueChange = {  },
                 colors = TextFieldDefaults.textFieldColors(
-                    containerColor = androidx.compose.ui.graphics.Color.Transparent),
+                    containerColor = Color.Transparent),
                 modifier = Modifier.fillMaxWidth())
 
-
+*/
 
             Spacer(modifier = Modifier.size(25.dp))
-            Text(text = "Password",color = androidx.compose.ui.graphics.Color.Gray)
-            PasswordTextField()
+
+            Text(text = "Password",color = Color.Gray)
+
+            PasswordTextField(onPasswordChange = { loginViewModel.password = it })
+
             Text(text = "Forgot Password?",
-                color = androidx.compose.ui.graphics.Color.Black, fontSize = 10.sp,
+                color = Color.Black, fontSize = 10.sp,
                 modifier = Modifier.align(Alignment.End)
             )
 
             Spacer(modifier = Modifier.size(30.dp))
 
-            Button(onClick = { /*TODO*/ },
+            Button(onClick = { loginViewModel.login() },
                 modifier = Modifier
                     .align(Alignment.CenterHorizontally)
                     .size(width = 250.dp, height = 50.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = androidx.compose.ui.graphics.Color(0xFF53B175)))
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF53B175)))
             {
                 Text("Log In",
-                    color = androidx.compose.ui.graphics.Color.White)
+                    color = Color.White)
             }
             Spacer(modifier = Modifier.size(25.dp))
 
@@ -112,7 +123,7 @@ fun LoginScreen() {
             Row(modifier = Modifier.align(Alignment.CenterHorizontally)) {
                 Spacer(modifier = Modifier.size(10.dp))
                 Text(text = "Don't have an account? ",
-                    color = androidx.compose.ui.graphics.Color.Black,
+                    color = Color.Black,
                     fontSize = 10.sp)
                 GreenText("Sign up")
             }
@@ -137,18 +148,38 @@ fun GreenText(palabra:String) {
 }
 
 
-
-
-
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PasswordTextField() {
+fun EmailTextField(onEmailChange: (String) -> Unit) {
+
+    var email by remember { mutableStateOf("") }
+
+    TextField(
+        value = email,
+        onValueChange = { email = it
+            onEmailChange(it)},
+        colors = TextFieldDefaults.colors(
+            focusedContainerColor = Color.Transparent,   // Color cuando el campo está enfocado
+            unfocusedContainerColor = Color.Transparent  // Color cuando el campo no está enfocado
+        ),
+        modifier = Modifier.fillMaxWidth()
+    )
+}
+
+
+
+
+
+@Composable
+fun PasswordTextField(onPasswordChange: (String) -> Unit) {
     var password by remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }
 
     TextField(
         value = password,
-        onValueChange = { password = it },
+        onValueChange = {
+            password = it
+            onPasswordChange(it)
+        },
         visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
         trailingIcon = {
             val image = if (passwordVisible)
@@ -160,11 +191,13 @@ fun PasswordTextField() {
                 Icon(painter = image, contentDescription = null)
             }
         },
-        colors = TextFieldDefaults.textFieldColors(
-            containerColor = androidx.compose.ui.graphics.Color.Transparent
+        colors = TextFieldDefaults.colors(
+            focusedContainerColor = Color.Transparent,   // Color cuando el campo está enfocado
+            unfocusedContainerColor = Color.Transparent  // Color cuando el campo no está enfocado
         ),
         modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp)
     )
 }
+
