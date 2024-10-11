@@ -81,7 +81,7 @@ fun LocationBar() {
             painter = painterResource(id = R.drawable.banner),
             contentDescription = "Fresh vegetables",
             modifier = Modifier
-                .size(400.dp, 150.dp)
+                .size(368.2.dp, 114.99.dp)
                 .align(Alignment.CenterHorizontally),
 //            contentScale = ContentScale.Crop
         )

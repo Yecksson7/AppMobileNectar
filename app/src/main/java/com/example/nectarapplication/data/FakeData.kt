@@ -17,3 +17,10 @@ val ExploreItems = listOf(
     Products(5, R.drawable.lacteos, "Dairy & eggs",  borderColor = softYellow, backgroundColor = softYellow.copy(alpha = 0.3f)),
     Products(6, R.drawable.gaseosas, "Beverages",  borderColor = softBlue, backgroundColor = softBlue.copy(alpha = 0.3f)),
 )
+
+val MyCartItems = listOf(
+    CartProducts(id = 1, R.drawable.morrones, title = "Bell Pepper Red", porcion = "1Kg, Price", precio = 4.99),
+    CartProducts(id = 2, R.drawable.huevos, title = "Egg Chicken Red", porcion = "4pcs, Price", precio = 1.99),
+    CartProducts(id = 1, R.drawable.banana, title = "Organic Bannanas", porcion = "12Kg, Price", precio = 3.00),
+    CartProducts(id = 1, R.drawable.jengibre, title = "Ginger", porcion = "250gm, Price", precio = 2.99),
+    )

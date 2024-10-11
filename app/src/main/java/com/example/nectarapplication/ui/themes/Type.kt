@@ -1,4 +1,4 @@
-package com.example.nectarapplication.ui.theme
+package com.example.nectarapplication.ui.themes
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
