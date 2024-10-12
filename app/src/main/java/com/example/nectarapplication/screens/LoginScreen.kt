@@ -56,9 +56,6 @@ fun LoginScreen() {
             .padding(16.dp),
             verticalArrangement = Arrangement.Top){
 
-
-
-
             Spacer(modifier = Modifier.size(60.dp))
 
             Image(painter = painterResource(id = R.drawable.zanahoria_naranja),
@@ -81,8 +78,8 @@ fun LoginScreen() {
             Text(text = "Email",color = androidx.compose.ui.graphics.Color.Gray)
 
             TextField(value = "", onValueChange = {  },
-                colors = TextFieldDefaults.textFieldColors(
-                    containerColor = androidx.compose.ui.graphics.Color.Transparent),
+                colors = TextFieldDefaults.colors(
+                    focusedContainerColor = androidx.compose.ui.graphics.Color.Transparent),
                 modifier = Modifier.fillMaxWidth())
 
 
@@ -116,10 +113,11 @@ fun LoginScreen() {
                     fontSize = 10.sp)
                 GreenText("Sign up")
             }
-           // Text(text = "Don't have an account? Sign up"+GreenText(),
-             //   color = androidx.compose.ui.graphics.Color.Black, fontSize = 10.sp,
-               // modifier = Modifier.align(Alignment.CenterHorizontally)
-            //)
+            Text(
+                text = "Don't have an account? Sign up" + GreenText("Singup"),
+                color = androidx.compose.ui.graphics.Color.Black, fontSize = 10.sp,
+                modifier = Modifier.align(Alignment.CenterHorizontally)
+            )
         }
     }
 
@@ -160,8 +158,8 @@ fun PasswordTextField() {
                 Icon(painter = image, contentDescription = null)
             }
         },
-        colors = TextFieldDefaults.textFieldColors(
-            containerColor = androidx.compose.ui.graphics.Color.Transparent
+        colors = TextFieldDefaults.colors(
+            focusedContainerColor = androidx.compose.ui.graphics.Color.Transparent
         ),
         modifier = Modifier
             .fillMaxWidth()

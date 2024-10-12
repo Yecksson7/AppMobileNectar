@@ -24,3 +24,11 @@ val MyCartItems = listOf(
     CartProducts(id = 1, R.drawable.banana, title = "Organic Bannanas", porcion = "12Kg, Price", precio = 3.00),
     CartProducts(id = 1, R.drawable.jengibre, title = "Ginger", porcion = "250gm, Price", precio = 2.99),
     )
+
+val FavouritesItems = listOf(
+    CartProducts(id = 1, R.drawable.sprite, title = "Sprite Can", porcion = "325ml, Price", precio = 1.50),
+    CartProducts(id = 2, R.drawable.cokalight, title = "Diet Coke", porcion = "355ml, Price", precio = 1.99),
+    CartProducts(id = 1, R.drawable.jugomanzana, title = "Apple & Grape Juice", porcion = "2L, Price", precio = 15.50),
+    CartProducts(id = 1, R.drawable.cocacola, title = "Coca Cola Can", porcion = "352ml, Price", precio = 4.99),
+    CartProducts(id = 1, R.drawable.pepsi, title = "Pepsi Can", porcion = "330ml, Price", precio = 4.99),
+)
