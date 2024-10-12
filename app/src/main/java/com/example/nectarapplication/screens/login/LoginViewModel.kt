@@ -1,4 +1,4 @@
-package com.example.nectarapplication.screens.Login
+package com.example.nectarapplication.screens.login
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -20,7 +20,7 @@ class LoginViewModel : ViewModel() {
 
     init {
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://fakestoreapi.com/auth/login") // Reemplaza con la URL de tu API
+            .baseUrl("https://fakestoreapi.com/") // Reemplaza con la URL de tu API
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 

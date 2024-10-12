@@ -1,4 +1,4 @@
-package com.example.nectarapplication.screens.Login
+package com.example.nectarapplication.screens.login
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -38,14 +38,21 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.nectarapplication.R
-
-
-
 @Preview(showBackground = true)
 @Composable
+fun PreviewLoginScreen() {
+
+    val fakeViewModel = LoginViewModel()
+    LoginScreen(loginViewModel = fakeViewModel)
+}
+
+
+//@Preview(showBackground = true)
+@Composable
 fun LoginScreen(loginViewModel: LoginViewModel = viewModel()) {
-    val email by remember { mutableStateOf("") }
-    val password by remember { mutableStateOf("") }
+
+    //val email by remember { mutableStateOf("") }
+   // val password by remember { mutableStateOf("") }
     val loginState = remember { loginViewModel.loginState }
 
     Box(modifier = Modifier.fillMaxSize()){
@@ -85,16 +92,6 @@ fun LoginScreen(loginViewModel: LoginViewModel = viewModel()) {
             Text(text = "Email",color = Color.Gray)
             EmailTextField(onEmailChange = { loginViewModel.email = it })
 
-
-/*
-Eliminar el código de la siguiente línea:
-            TextField(value = "", onValueChange = {  },
-                colors = TextFieldDefaults.textFieldColors(
-                    containerColor = Color.Transparent),
-                modifier = Modifier.fillMaxWidth())
-
-*/
-
             Spacer(modifier = Modifier.size(25.dp))
 
             Text(text = "Password",color = Color.Gray)
@@ -127,10 +124,7 @@ Eliminar el código de la siguiente línea:
                     fontSize = 10.sp)
                 GreenText("Sign up")
             }
-           // Text(text = "Don't have an account? Sign up"+GreenText(),
-             //   color = androidx.compose.ui.graphics.Color.Black, fontSize = 10.sp,
-               // modifier = Modifier.align(Alignment.CenterHorizontally)
-            //)
+
         }
     }
 

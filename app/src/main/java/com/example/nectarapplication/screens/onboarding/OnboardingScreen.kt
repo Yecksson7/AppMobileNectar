@@ -39,9 +39,12 @@ fun OnboardingScreen() {
         Column(modifier = Modifier.absoluteOffset(x=80.dp, y = 540.dp),
             horizontalAlignment = CenterHorizontally){
 
-            Text("   Welcome\n to our store",
+            Text("Welcome",
                 color = androidx.compose.ui.graphics.Color.White,
                 fontSize = 46.sp)
+            Text(" to our store",
+                color = androidx.compose.ui.graphics.Color.White,
+                fontSize = 46.sp,)
 
             Text(text = "Get your groceries in as gast as one hour",
                 color = androidx.compose.ui.graphics.Color.White)

@@ -31,8 +31,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.nectarapplication.R
-import com.example.nectarapplication.screens.Login.GreenText
-import com.example.nectarapplication.screens.Login.PasswordTextField
+import com.example.nectarapplication.screens.login.GreenText
+import com.example.nectarapplication.screens.login.PasswordTextField
 
 @Preview(showBackground = true)
 @Composable
