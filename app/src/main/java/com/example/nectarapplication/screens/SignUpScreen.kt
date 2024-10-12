@@ -69,8 +69,8 @@ fun SignUpScreen() {
 
             Text(text = "Username",color = androidx.compose.ui.graphics.Color.Gray)
             TextField(value = "", onValueChange = {  },
-                colors = TextFieldDefaults.textFieldColors(
-                    containerColor = androidx.compose.ui.graphics.Color.Transparent),
+//                colors = TextFieldDefaults.textFieldColors(
+//                    containerColor = androidx.compose.ui.graphics.Color.Transparent),
                 modifier = Modifier.fillMaxWidth())
 
             Spacer(modifier = Modifier.size(25.dp))
@@ -141,9 +141,9 @@ fun EmailTextField() {
             email = it
             errorMessage = if (isValidEmail(it)) "" else "Invalid email address"
         },
-        colors = TextFieldDefaults.textFieldColors(
-            containerColor = androidx.compose.ui.graphics.Color.Transparent
-        ),
+//        colors = TextFieldDefaults.textFieldColors(
+//            containerColor = androidx.compose.ui.graphics.Color.Transparent
+//        ),
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
         modifier = Modifier.fillMaxWidth()
     )

@@ -23,7 +23,7 @@ import androidx.navigation.NavController
 import com.example.nectarapplication.R
 
 @Composable
-fun CustomBottomBar(navController: NavController) {
+fun BottomBar(navController: NavController) {
     BottomAppBar(
         modifier = Modifier
             .fillMaxWidth()

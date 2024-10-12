@@ -39,7 +39,7 @@ class FavouritesViewModel: ViewModel() {
     )
 
     val uiState = viewModelState.map(FavouritesModelState::toUiState)
-        .stateIn(
+        .stateIn (
             viewModelScope,
             SharingStarted.Eagerly,
             viewModelState.value.toUiState()

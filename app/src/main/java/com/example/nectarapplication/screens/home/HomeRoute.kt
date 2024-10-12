@@ -10,7 +10,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.nectarapplication.MainNavActions
 
 @Composable
-fun ListRoute(
+fun HomeRoute(
     listViewModel: HomeViewModel,
     openDrawer: () -> Unit,
     snackbarHostState: SnackbarHostState = remember { SnackbarHostState() },
@@ -19,7 +19,7 @@ fun ListRoute(
 
     val uiState by listViewModel.uiState.collectAsStateWithLifecycle()
 
-    ListRoute(
+    HomeRoute(
         listViewModel = listViewModel,
         uiState = uiState,
         onToggleFavorite = { listViewModel.toggleFavourite(it) },
@@ -30,7 +30,7 @@ fun ListRoute(
 }
 
 @Composable
-fun ListRoute(
+fun HomeRoute(
     listViewModel: HomeViewModel,
     uiState: ListUiState,
     onToggleFavorite: (String) -> Unit,

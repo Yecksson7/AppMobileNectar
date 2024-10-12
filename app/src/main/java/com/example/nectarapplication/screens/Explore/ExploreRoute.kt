@@ -8,9 +8,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.nectarapplication.MainNavActions
+import com.example.nectarapplication.data.Products
 
 @Composable
 fun ExploreRoute(
+    exploreItems: List<Products>,
     exploreViewModel: ExploreViewModel,
     openDrawer: () -> Unit,
     snackbarHostState: SnackbarHostState = remember { SnackbarHostState() },

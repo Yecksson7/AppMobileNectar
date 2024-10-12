@@ -6,9 +6,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.nectarapplication.MainNavActions
+import com.example.nectarapplication.data.CartProducts
 
 @Composable
 fun FavouritesRoute(
+    favouritesItems: List<CartProducts>,
     favouritesViewModel: FavouritesViewModel,
     openDrawer: () -> Unit,
     snackbarHostState: SnackbarHostState = remember { SnackbarHostState() },
@@ -37,5 +39,5 @@ fun FavouritesRoute(
     navigationActions: MainNavActions
 ) {
 
-    favouritesViewModel.getItems()?.let { FavouritesScreen(it, navigationActions) }
+    favouritesViewModel.getItems()?.let { FavouritesScreen( it, navigationActions ) }
 }

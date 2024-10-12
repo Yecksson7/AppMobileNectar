@@ -94,8 +94,9 @@ fun AddressDropdownMenu() {
             },
             modifier = Modifier
                 .menuAnchor()
-                .fillMaxWidth(),colors = TextFieldDefaults.textFieldColors(
-                containerColor = androidx.compose.ui.graphics.Color.Transparent)
+                .fillMaxWidth(),
+            colors = TextFieldDefaults.colors(
+                focusedContainerColor = androidx.compose.ui.graphics.Color.Transparent)
         )
         ExposedDropdownMenu(
             expanded = expanded,

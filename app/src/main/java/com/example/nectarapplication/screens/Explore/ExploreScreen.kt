@@ -83,7 +83,7 @@ fun SearchBar() {
             .fillMaxWidth()
             .height(56.dp)
             .clip(RoundedCornerShape(12.dp))
-            .background(Color(0xFFF4F4F4)),
+            .background(Color(0xFFF4F4F4) ),
     ) {
         OutlinedTextField(
             shape = RoundedCornerShape(18.dp),

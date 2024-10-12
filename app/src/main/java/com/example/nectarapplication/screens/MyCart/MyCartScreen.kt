@@ -1,4 +1,4 @@
-package com.example.nectarapplication.screens.MyCartScreen
+package com.example.nectarapplication.screens.MyCart
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.Image
@@ -75,52 +75,20 @@ fun MyCartScreen(
             state = state
         ) {
             items(cartProduct.chunked(4)) { productCart ->
-                CartProduct(
-                    cartProduct = productCart[0],
-                    navigationActions = navigationActions
-                )
-                HorizontalDivider(
-                    modifier = Modifier
-                        .fillMaxWidth() // Ancho fijo de la línea
-                        .padding(horizontal = 40.dp), // Margen en los lados
-                    color = Color.LightGray,
-                )
-                if (productCart.isNotEmpty()) {
+                productCart.forEachIndexed { index, cartProduct ->
                     CartProduct(
-                        cartProduct = productCart[1],
+                        cartProduct = cartProduct,
                         navigationActions = navigationActions
                     )
+                    if (index != productCart.lastIndex) {
+                        HorizontalDivider(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 40.dp),
+                            color = Color.LightGray,
+                        )
+                    }
                 }
-                HorizontalDivider(
-                    modifier = Modifier
-                        .fillMaxWidth() // Ancho fijo de la línea
-                        .padding(horizontal = 40.dp), // Margen en los lados
-                    color = Color.LightGray,
-                )
-                if (productCart.isNotEmpty()) {
-                    CartProduct(
-                        cartProduct = productCart[2],
-                        navigationActions = navigationActions
-                    )
-                }
-                HorizontalDivider(
-                    modifier = Modifier
-                        .fillMaxWidth() // Ancho fijo de la línea
-                        .padding(horizontal = 40.dp), // Margen en los lados
-                    color = Color.LightGray,
-                )
-                if (productCart.isNotEmpty()) {
-                    CartProduct(
-                        cartProduct = productCart[3],
-                        navigationActions = navigationActions
-                    )
-                }
-                HorizontalDivider(
-                    modifier = Modifier
-                        .fillMaxWidth() // Ancho fijo de la línea
-                        .padding(horizontal = 40.dp), // Margen en los lados
-                    color = Color.LightGray,
-                )
             }
         }
     }

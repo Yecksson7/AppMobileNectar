@@ -8,11 +8,13 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 object AppDestinations {
-    const val LIST_ITEMS_ROUTE = "home"
-    const val DETAILS_ROUTE = "detail/{bootId}"
+    const val HOME_ITEMS_ROUTE = "home"
+    const val DETAILS_ROUTE = "detail/{productsId}"
+    const val EXPLORE_ROUTE = "explore"
+    const val MY_CART_ROUTE = "myCart"
     const val FAVOURITES = "favourites"
-    const val PROFILE = "profile"
-    const val SETTINGS = "settings"
+    //const val ACCOUNT = "account"
+    //const val FILTERS = "filters"
 }
 
 class MainNavActions(
@@ -22,7 +24,7 @@ class MainNavActions(
     snackbarHostState: SnackbarHostState
 ) {
     val navigateToList: () -> Unit = {
-        navController.navigate(AppDestinations.LIST_ITEMS_ROUTE) {
+        navController.navigate(AppDestinations.HOME_ITEMS_ROUTE) {
             scope.launch {
                 drawerState.close()
             }
@@ -33,37 +35,61 @@ class MainNavActions(
             restoreState = true
         }
     }
-//    val navigateToDetail: (bootID: Int) -> Unit = { bootID ->
-//        navController.navigate(
-//            AppDestinations.DETAILS_ROUTE.replace(
-//                oldValue = "{bootId}",
-//                newValue = bootID.toString()
-//            )
-//        ) {
-//            scope.launch {
-//                drawerState.close()
-//            }
-//            popUpTo(navController.graph.findStartDestination().id) {
-//                saveState = true
-//            }
-//            launchSingleTop = true
-//            restoreState = true
-//        }
-//    }
-//    val navigateToFavorite: () -> Unit = {
-//        navController.navigate(AppDestinations.FAVOURITES) {
-//            scope.launch {
-//                drawerState.close()
-//            }
-//            popUpTo(navController.graph.findStartDestination().id) {
-//                saveState = true
-//            }
-//            launchSingleTop = true
-//            restoreState = true
-//        }
-//    }
-//    val navigateToProfile: () -> Unit = {
-//        navController.navigate(AppDestinations.PROFILE) {
+    val navigateToDetail: (bootID: Int) -> Unit = { productID ->
+        navController.navigate(
+            AppDestinations.DETAILS_ROUTE.replace(
+                oldValue = "{bootId}",
+                newValue = productID.toString()
+            )
+        ) {
+            scope.launch {
+                drawerState.close()
+            }
+            popUpTo(navController.graph.findStartDestination().id) {
+                saveState = true
+            }
+            launchSingleTop = true
+            restoreState = true
+        }
+    }
+    val navigateToExplore: () -> Unit = {
+        navController.navigate(AppDestinations.EXPLORE_ROUTE) {
+            scope.launch {
+                drawerState.close()
+            }
+            popUpTo(navController.graph.findStartDestination().id) {
+                saveState = true
+            }
+            launchSingleTop = true
+            restoreState = true
+        }
+    }
+    val navigateToMyCart: () -> Unit = {
+        navController.navigate(AppDestinations.MY_CART_ROUTE) {
+            scope.launch {
+                drawerState.close()
+            }
+            popUpTo(navController.graph.findStartDestination().id) {
+                saveState = true
+            }
+            launchSingleTop = true
+            restoreState = true
+        }
+    }
+    val navigateToFavorites: () -> Unit = {
+        navController.navigate(AppDestinations.FAVOURITES) {
+            scope.launch {
+                drawerState.close()
+            }
+            popUpTo(navController.graph.findStartDestination().id) {
+                saveState = true
+            }
+            launchSingleTop = true
+            restoreState = true
+        }
+    }
+//    val navigateToAccount: () -> Unit = {
+//        navController.navigate(AppDestinations.ACCOUNT) {
 //            scope.launch {
 //                drawerState.close()
 //            }
@@ -75,7 +101,7 @@ class MainNavActions(
 //        }
 //    }
 //    val navigateToSettings: () -> Unit = {
-//        navController.navigate(AppDestinations.SETTINGS) {
+//        navController.navigate(AppDestinations.FILTERS) {
 //            scope.launch {
 //                drawerState.close()
 //            }
