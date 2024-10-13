@@ -1,6 +1,7 @@
 package com.example.nectarapplication.screens.singUp
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -30,13 +31,14 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.nectarapplication.MainNavActions
 import com.example.nectarapplication.R
 import com.example.nectarapplication.screens.login.GreenText
 import com.example.nectarapplication.screens.login.PasswordTextField
 
-@Preview(showBackground = true)
+//@Preview(showBackground = true)
 @Composable
-fun SignUpScreen() {
+fun SignUpScreen(navigationActions: MainNavActions) {
     var password by remember { mutableStateOf("") }
     Box(modifier = Modifier.fillMaxSize()){
         Image(
@@ -117,7 +119,10 @@ fun SignUpScreen() {
 
             Row(modifier = Modifier.align(Alignment.CenterHorizontally)) {
                 Text(text = "Already have an account? ",color = Color.Black, fontSize = 10.sp)
-                GreenText("Log in")
+                Row (Modifier.clickable { navigationActions.navigateToLogin()}){
+                    GreenText("Log in")
+                }
+
             }
 
 

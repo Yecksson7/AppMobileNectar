@@ -12,6 +12,7 @@ object AppDestinations {
     const val ONBOARDING_ROUTE = "onboarding"
     const val LOGIN_ROUTE = "login"
     const val LOCATION_ROUTE = "location"
+    const val SING_UP_ROUTE = "sign-up"
 }
 
 class MainNavActions(
@@ -43,6 +44,12 @@ class MainNavActions(
 
     val navigateToLocation: () -> Unit = {
         navController.navigate(AppDestinations.LOCATION_ROUTE) {
+            popUpTo(navController.graph.findStartDestination().id)
+            launchSingleTop = true
+        }
+    }
+    val navigateToSingUp: () -> Unit = {
+        navController.navigate(AppDestinations.SING_UP_ROUTE) {
             popUpTo(navController.graph.findStartDestination().id)
             launchSingleTop = true
         }

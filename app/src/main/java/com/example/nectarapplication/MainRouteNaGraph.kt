@@ -6,11 +6,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.nectarapplication.screens.Location.LocationViewModel
 import com.example.nectarapplication.screens.Location.SelectLocationScreen
 import com.example.nectarapplication.screens.login.LoginScreen
 import com.example.nectarapplication.screens.login.LoginViewModel
 import com.example.nectarapplication.screens.onboarding.OnboardingScreen
+import com.example.nectarapplication.screens.singUp.SignUpScreen
 import com.example.nectarapplication.screens.splash.SplashScreen
 
 @Composable
@@ -55,6 +55,14 @@ fun MainNavGraph(
            // viewModel.setTitle("Location Screen")
 
             SelectLocationScreen(
+                navigationActions = navigationActions
+            )
+        }
+        //SingUpScreen route
+        composable(AppDestinations.SING_UP_ROUTE) {
+            // viewModel.setTitle("Location Screen")
+
+            SignUpScreen(
                 navigationActions = navigationActions
             )
         }

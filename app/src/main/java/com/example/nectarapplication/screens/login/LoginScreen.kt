@@ -1,6 +1,7 @@
 package com.example.nectarapplication.screens.login
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -158,7 +159,10 @@ fun LoginScreen(loginViewModel: LoginViewModel = viewModel(), navigationActions:
                     color = Color.Black,
                     fontSize = 10.sp
                 )
-                GreenText("Sign up")
+                Row(Modifier.clickable { navigationActions.navigateToSingUp() }) {
+                    GreenText("Sign up")
+                }
+
             }
         }
 
