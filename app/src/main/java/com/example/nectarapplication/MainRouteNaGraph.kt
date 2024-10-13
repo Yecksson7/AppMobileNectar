@@ -1,14 +1,65 @@
 package com.example.nectarapplication
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.nectarapplication.screens.Location.LocationViewModel
+import com.example.nectarapplication.screens.Location.SelectLocationScreen
+import com.example.nectarapplication.screens.login.LoginScreen
+import com.example.nectarapplication.screens.login.LoginViewModel
+import com.example.nectarapplication.screens.onboarding.OnboardingScreen
+import com.example.nectarapplication.screens.splash.SplashScreen
 
+@Composable
+fun MainNavGraph(
+    navController: NavHostController = rememberNavController(),
+    startDestination: String = AppDestinations.SPLASH_ROUTE,
+    //viewModel: MainViewModel,
+    navigationActions: MainNavActions
+) {
+    NavHost(
+        navController = navController,
+        startDestination = startDestination
+    ) {
+        // SplashScreen route
+        composable(AppDestinations.SPLASH_ROUTE) {
+            //viewModel.setTitle("Splash Screen")
+            SplashScreen(
+                navigationActions = navigationActions
+            )
+        }
 
+        // OnboardingScreen route
+        composable(AppDestinations.ONBOARDING_ROUTE) {
+            //viewModel.setTitle("Onboarding Screen")
+            OnboardingScreen(
+                navigationActions = navigationActions
+            )
+        }
+
+        // LoginScreen route
+        composable(AppDestinations.LOGIN_ROUTE) {
+          //  viewModel.setTitle("Login Screen")
+            val loginViewModel: LoginViewModel = viewModel()
+            LoginScreen(
+                loginViewModel = loginViewModel,
+                navigationActions = navigationActions
+            )
+        }
+
+        // LocationScreen route
+        composable(AppDestinations.LOCATION_ROUTE) {
+           // viewModel.setTitle("Location Screen")
+
+            SelectLocationScreen(
+                navigationActions = navigationActions
+            )
+        }
+    }
+}
 //@Composable
 //fun MainRouteNavGraph(
 //    modifier: Modifier = Modifier,

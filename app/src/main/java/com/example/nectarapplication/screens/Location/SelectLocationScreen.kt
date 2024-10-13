@@ -2,6 +2,7 @@ package com.example.nectarapplication.screens.Location
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -10,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
@@ -18,7 +20,9 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -30,13 +34,83 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.nectarapplication.MainNavActions
 import com.example.nectarapplication.R
+import com.example.nectarapplication.data.zone
+
 import com.example.nectarapplication.data.getListaArea
 import com.example.nectarapplication.data.getListaZona
 
-@Preview(showBackground = true)
+//@Preview(showBackground = true)
 @Composable
-fun SelectLocationScreen() {
+fun SelectLocationScreen(navigationActions: MainNavActions) {
+    var isLoading by remember { mutableStateOf(true) }
+    var zonas by remember { mutableStateOf(emptyList<String>()) }
+    var areas by remember { mutableStateOf(emptyList<String>()) }
+
+    LaunchedEffect(Unit) {
+        zonas = getListaZona()
+        areas = getListaArea()
+        isLoading = false
+    }
+
+    if (isLoading) {
+        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+            CircularProgressIndicator()
+        }
+    } else {
+        Box(modifier = Modifier.fillMaxSize()) {
+            Image(
+                painter = painterResource(id = R.drawable.fondologin),
+                contentDescription = "Onboarding Image",
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.fillMaxSize()
+            )
+            Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Top) {
+                Spacer(modifier = Modifier.size(100.dp))
+                Image(
+                    painter = painterResource(id = R.drawable.image_location),
+                    contentDescription = "Onboarding Image",
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                )
+                Spacer(modifier = Modifier.size(50.dp))
+                Text(
+                    text = "Select your location",
+                    fontSize = 24.sp,
+                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                )
+                Spacer(modifier = Modifier.size(20.dp))
+                Text(
+                    text = "Switch on your location to stay in tune with",
+                    color = Color.Gray,
+                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                )
+                Text(
+                    text = "what's happening in your area",
+                    color = Color.Gray,
+                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                )
+                Spacer(modifier = Modifier.size(50.dp))
+                AddressDropdownMenu("Your Zone", zonas)
+                Spacer(modifier = Modifier.size(20.dp))
+                AddressDropdownMenu("Your area", areas)
+                Spacer(modifier = Modifier.size(60.dp))
+                Button(
+                    onClick = { /*TODO*/ },
+                    modifier = Modifier
+                        .align(Alignment.CenterHorizontally)
+                        .size(width = 250.dp, height = 50.dp),
+                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF53B175))
+                ) {
+                    Text("Submit", color = Color.White)
+                }
+            }
+        }
+    }
+}
+/*fun SelectLocationScreen(navigationActions: MainNavActions) {
     Box(modifier = Modifier.fillMaxSize()){
         Image(
             painter = painterResource(id = R.drawable.fondologin),
@@ -87,13 +161,14 @@ fun SelectLocationScreen() {
 
         }
     }
-}
+}*/
 
 
 @OptIn(ExperimentalMaterial3Api::class)
+
 @Composable
 fun AddressDropdownMenu(mensaje:String, listado: List<String>) {
-    val addresses = listado
+    var addresses = listado
     var expanded by remember { mutableStateOf(false) }
     var selectedAddress by remember { mutableStateOf(addresses[0]) }
 

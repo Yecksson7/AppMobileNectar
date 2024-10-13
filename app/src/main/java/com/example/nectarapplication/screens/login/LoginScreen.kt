@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -37,23 +38,148 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.nectarapplication.MainNavActions
 import com.example.nectarapplication.R
+import androidx.compose.runtime.livedata.observeAsState
+
 @Preview(showBackground = true)
 @Composable
 fun PreviewLoginScreen() {
 
-    val fakeViewModel = LoginViewModel()
-    LoginScreen(loginViewModel = fakeViewModel)
+
 }
 
 
 //@Preview(showBackground = true)
 @Composable
-fun LoginScreen(loginViewModel: LoginViewModel = viewModel()) {
+fun LoginScreen(loginViewModel: LoginViewModel = viewModel(), navigationActions: MainNavActions) {
 
+    var expandedState by remember { mutableStateOf(false) }
+    //var indicaError by remember { mutableStateOf(false) }
+
+    // Observar los estados desde el ViewModel
+    val isLoading by loginViewModel.isLoading.observeAsState(false)
+    val loginResponse by loginViewModel.loginResponse.observeAsState(null)
+    val loginError by loginViewModel.loginError.observeAsState(null)
+
+
+    Box(modifier = Modifier.fillMaxSize()) {
+        Image(
+            painter = painterResource(id = R.drawable.fondologin),
+            contentDescription = "Onboarding Image",
+            contentScale = ContentScale.Crop,
+            modifier = Modifier.fillMaxSize()
+        )
+
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+            verticalArrangement = Arrangement.Top
+        ) {
+            Spacer(modifier = Modifier.size(60.dp))
+
+            Image(
+                painter = painterResource(id = R.drawable.zanahoria_naranja),
+                contentDescription = null,
+                modifier = Modifier
+                    .align(Alignment.CenterHorizontally)
+                    .size(40.dp)
+            )
+
+            Spacer(modifier = Modifier.size(50.dp))
+
+            Text(
+                text = "Sign in",
+                fontWeight = FontWeight.Bold,
+                fontSize = 20.sp
+            )
+
+            Spacer(modifier = Modifier.size(10.dp))
+
+            Text(
+                text = "Enter your emails and password",
+                fontSize = 13.sp,
+                color = Color.Gray
+            )
+
+            Spacer(modifier = Modifier.size(40.dp))
+
+            Text(text = "Email", color = Color.Gray)
+            EmailTextField(onEmailChange = { loginViewModel.username = it })
+
+            Spacer(modifier = Modifier.size(25.dp))
+
+            Text(text = "Password", color = Color.Gray)
+            PasswordTextField(onPasswordChange = { loginViewModel.password = it })
+
+            Text(
+                text = "Forgot Password?",
+                color = Color.Black,
+                fontSize = 10.sp,
+                modifier = Modifier.align(Alignment.End)
+            )
+
+            if (expandedState) {
+                Text(
+                    text = "Error de crendenciales",
+                    color = Color.Red
+                )
+            }
+
+            Spacer(modifier = Modifier.size(30.dp))
+
+            Button(
+                onClick = {
+                    loginViewModel.login()
+                },
+                modifier = Modifier
+                    .align(Alignment.CenterHorizontally)
+                    .size(width = 250.dp, height = 50.dp),
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF53B175))
+            ) {
+                if (isLoading) {
+                    CircularProgressIndicator(
+                        modifier = Modifier.size(16.dp),
+                        color = Color.White,
+                        strokeWidth = 2.dp
+                    )
+                } else {
+                    Text("Log In", color = Color.White)
+                }
+            }
+
+            Spacer(modifier = Modifier.size(25.dp))
+
+            Row(modifier = Modifier.align(Alignment.CenterHorizontally)) {
+                Spacer(modifier = Modifier.size(10.dp))
+                Text(
+                    text = "Don't have an account? ",
+                    color = Color.Black,
+                    fontSize = 10.sp
+                )
+                GreenText("Sign up")
+            }
+        }
+
+        // Estado de éxito, error o cargando
+        loginResponse?.let {
+            navigationActions.navigateToLocation()
+        }
+
+        loginError?.let {
+
+            expandedState = true
+        }
+    }
+}
+
+/*
     //val email by remember { mutableStateOf("") }
    // val password by remember { mutableStateOf("") }
-    val loginState = remember { loginViewModel.loginState }
+    var indicaError by remember { mutableStateOf(false) }
+    var loginState by remember { mutableStateOf(loginViewModel.loginState) }
+
 
     Box(modifier = Modifier.fillMaxSize()){
         Image(
@@ -90,7 +216,7 @@ fun LoginScreen(loginViewModel: LoginViewModel = viewModel()) {
             Spacer(modifier = Modifier.size(40.dp))
 
             Text(text = "Email",color = Color.Gray)
-            EmailTextField(onEmailChange = { loginViewModel.email = it })
+            EmailTextField(onEmailChange = { loginViewModel.username = it })
 
             Spacer(modifier = Modifier.size(25.dp))
 
@@ -104,6 +230,7 @@ fun LoginScreen(loginViewModel: LoginViewModel = viewModel()) {
             )
 
             Spacer(modifier = Modifier.size(30.dp))
+            MensajeDeError(indicaError)
 
             Button(onClick = { loginViewModel.login() },
                 modifier = Modifier
@@ -127,8 +254,26 @@ fun LoginScreen(loginViewModel: LoginViewModel = viewModel()) {
 
         }
     }
+    when (loginState) {
+        is LoginState.Loading -> {
+            CircularProgressIndicator() // Mostrar estado de carga
+        }
 
-}
+        is LoginState.Success -> {
+            navigationActions.navigateToLocation()
+        }
+
+        is LoginState.Error -> {
+            indicaError = true
+        }
+        LoginState.Idle -> {
+            // No hacer nada
+        }
+
+    }
+
+
+}*/
 
 @Composable
 fun GreenText(palabra:String) {
@@ -158,8 +303,6 @@ fun EmailTextField(onEmailChange: (String) -> Unit) {
         modifier = Modifier.fillMaxWidth()
     )
 }
-
-
 
 
 

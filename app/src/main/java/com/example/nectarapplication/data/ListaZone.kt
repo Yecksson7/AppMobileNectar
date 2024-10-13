@@ -1,5 +1,6 @@
 package com.example.nectarapplication.data
 
+
 val zone =
 listOf("Address 1", "Address 2", "Address 3")
 
@@ -13,3 +14,4 @@ val area =
 public fun getListaArea():List<String>{
     return area
 }
+

@@ -230,7 +230,7 @@ fun BestSellingSection() {
     }
 }
 
-
+/*
 @Preview("List Screen", showBackground = true)
 @Preview("List Screen (dark)", uiMode = UI_MODE_NIGHT_YES)
 @Composable
@@ -252,3 +252,5 @@ fun GreetingPreview() {
         onToggleFavorite
     )
 }
+*/
+//comentado por yecksson para pruebas
