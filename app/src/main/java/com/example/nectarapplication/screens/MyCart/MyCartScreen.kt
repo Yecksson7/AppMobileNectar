@@ -201,7 +201,7 @@ fun CartButtons() {
     }
 }
 
-
+/*
 @Preview("Explore Screen", showBackground = true)
 @Preview("Explore Screen (dark)", uiMode = UI_MODE_NIGHT_YES)
 @Composable
@@ -223,4 +223,5 @@ fun GreetingPreview() {
         PaddingValues(16.dp),
         onToggleFavorite
     )
-}
+}*/
+//comentado por yecksson para pruebas

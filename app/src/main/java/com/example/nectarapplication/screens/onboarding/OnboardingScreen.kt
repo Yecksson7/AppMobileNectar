@@ -1,6 +1,5 @@
-package com.example.nectarapplication.screens
+package com.example.nectarapplication.screens.onboarding
 
-import android.graphics.Color
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -19,11 +18,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.nectarapplication.MainNavActions
 import com.example.nectarapplication.R
 
-@Preview(showBackground = true)
+//@Preview(showBackground = true)
 @Composable
-fun OnboardingScreen() {
+fun OnboardingScreen(navigationActions: MainNavActions) {
     Box(modifier = Modifier.fillMaxSize()){
         Image(
             painter = painterResource(id = R.drawable.backgrounonb),
@@ -40,14 +40,17 @@ fun OnboardingScreen() {
         Column(modifier = Modifier.absoluteOffset(x=80.dp, y = 540.dp),
             horizontalAlignment = CenterHorizontally){
 
-            Text("   Welcome\n to our store",
+            Text("Welcome",
                 color = androidx.compose.ui.graphics.Color.White,
                 fontSize = 46.sp)
+            Text(" to our store",
+                color = androidx.compose.ui.graphics.Color.White,
+                fontSize = 46.sp,)
 
             Text(text = "Get your groceries in as gast as one hour",
                 color = androidx.compose.ui.graphics.Color.White)
                 Spacer(modifier = Modifier.size(20.dp))
-            Button(onClick = { /*TODO*/ },
+            Button(onClick = { navigationActions.navigateToLogin() },//agregue la ruta de login
                 modifier = Modifier.size(width = 250.dp, height = 50.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = androidx.compose.ui.graphics.Color(0xFF53B175))) {
                 Text("Get Started",

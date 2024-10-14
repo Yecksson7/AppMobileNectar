@@ -1,6 +1,7 @@
-package com.example.nectarapplication.screens
+package com.example.nectarapplication.screens.singUp
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -13,7 +14,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -24,18 +24,22 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.nectarapplication.MainNavActions
 import com.example.nectarapplication.R
+import com.example.nectarapplication.screens.login.GreenText
+import com.example.nectarapplication.screens.login.PasswordTextField
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Preview(showBackground = true)
+//@Preview(showBackground = true)
 @Composable
-fun SignUpScreen() {
+fun SignUpScreen(navigationActions: MainNavActions) {
+    var password by remember { mutableStateOf("") }
     Box(modifier = Modifier.fillMaxSize()){
         Image(
             painter = painterResource(id = R.drawable.fondologin),
@@ -64,33 +68,38 @@ fun SignUpScreen() {
             )
             Spacer(modifier = Modifier.size(10.dp))
 
-            Text(text = "Enter your credentials to continue", fontSize = 13.sp, color = androidx.compose.ui.graphics.Color.Gray)
+            Text(text = "Enter your credentials to continue", fontSize = 13.sp, color = Color.Gray)
             Spacer(modifier = Modifier.size(40.dp))
 
-            Text(text = "Username",color = androidx.compose.ui.graphics.Color.Gray)
+            Text(text = "Username",color = Color.Gray)
             TextField(value = "", onValueChange = {  },
-//                colors = TextFieldDefaults.textFieldColors(
-//                    containerColor = androidx.compose.ui.graphics.Color.Transparent),
+                colors = TextFieldDefaults.colors(
+                    focusedContainerColor = Color.Transparent,   // Color cuando el campo está enfocado
+                    unfocusedContainerColor = Color.Transparent  // Color cuando el campo no está enfocado
+                ),
+                //Version anterior
+                //colors = TextFieldDefaults.textFieldColors(
+                  //  containerColor = androidx.compose.ui.graphics.Color.Transparent),
                 modifier = Modifier.fillMaxWidth())
 
             Spacer(modifier = Modifier.size(25.dp))
 
-            Text(text = "Email",color = androidx.compose.ui.graphics.Color.Gray)
+            Text(text = "Email",color = Color.Gray)
 
-            EmailTextField()
+            EmailTextFieldVerificado()
             Spacer(modifier = Modifier.size(25.dp))
-            Text(text = "Password",color = androidx.compose.ui.graphics.Color.Gray)
-            PasswordTextField()
+            Text(text = "Password",color = Color.Gray)
+            PasswordTextField(onPasswordChange = { password = it })
 
             Spacer(modifier = Modifier.size(5.dp))
             Row(modifier = Modifier.align(Alignment.Start)) {
                 Spacer(modifier = Modifier.size(10.dp))
-                Text(text = "By continuing you agree to our ",color = androidx.compose.ui.graphics.Color.Black, fontSize = 10.sp)
+                Text(text = "By continuing you agree to our ",color = Color.Black, fontSize = 10.sp)
                 GreenText("Terms and Conditions")
             }
             Row(modifier = Modifier.align(Alignment.Start)) {
                 Spacer(modifier = Modifier.size(10.dp))
-                Text(text = "and ",color = androidx.compose.ui.graphics.Color.Black, fontSize = 10.sp)
+                Text(text = "and ",color = Color.Black, fontSize = 10.sp)
                 GreenText("Privacy Policy")
             }
 
@@ -101,16 +110,19 @@ fun SignUpScreen() {
                 modifier = Modifier
                     .align(Alignment.CenterHorizontally)
                     .size(width = 280.dp, height = 50.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = androidx.compose.ui.graphics.Color(0xFF53B175)))
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF53B175)))
             {
                 Text("Sing Up",
-                    color = androidx.compose.ui.graphics.Color.White)
+                    color = Color.White)
             }
             Spacer(modifier = Modifier.size(25.dp))
 
             Row(modifier = Modifier.align(Alignment.CenterHorizontally)) {
-                Text(text = "Already have an account? ",color = androidx.compose.ui.graphics.Color.Black, fontSize = 10.sp)
-                GreenText("Log in")
+                Text(text = "Already have an account? ",color = Color.Black, fontSize = 10.sp)
+                Row (Modifier.clickable { navigationActions.navigateToLogin()}){
+                    GreenText("Log in")
+                }
+
             }
 
 
@@ -124,9 +136,8 @@ fun SignUpScreen() {
 }
 
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun EmailTextField() {
+fun EmailTextFieldVerificado() {
     var email by remember { mutableStateOf("") }
     var errorMessage by remember { mutableStateOf("") }
 
@@ -141,9 +152,10 @@ fun EmailTextField() {
             email = it
             errorMessage = if (isValidEmail(it)) "" else "Invalid email address"
         },
-//        colors = TextFieldDefaults.textFieldColors(
-//            containerColor = androidx.compose.ui.graphics.Color.Transparent
-//        ),
+        colors = TextFieldDefaults.colors(
+            focusedContainerColor = Color.Transparent,   // Color cuando el campo está enfocado
+            unfocusedContainerColor = Color.Transparent  // Color cuando el campo no está enfocado
+        ),
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
         modifier = Modifier.fillMaxWidth()
     )
@@ -151,7 +163,7 @@ fun EmailTextField() {
     if (errorMessage.isNotEmpty()) {
         Text(
             text = errorMessage,
-            color = androidx.compose.ui.graphics.Color.Red,
+            color = Color.Red,
             fontSize = 12.sp
         )
     }
