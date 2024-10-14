@@ -7,13 +7,12 @@ import androidx.compose.runtime.remember
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.nectarapplication.MainNavActions
 import com.example.nectarapplication.data.CartProducts
+import com.example.nectarapplication.data.Products
 
 @Composable
 fun FavouritesRoute(
     favouritesItems: List<CartProducts>,
     favouritesViewModel: FavouritesViewModel,
-    openDrawer: () -> Unit,
-    snackbarHostState: SnackbarHostState = remember { SnackbarHostState() },
     navigationActions: MainNavActions
 ) {
 
@@ -21,10 +20,6 @@ fun FavouritesRoute(
 
     FavouritesRoute(
         favouritesViewModel = favouritesViewModel,
-        uiState = uiState,
-        onToggleFavorite = { favouritesViewModel.toggleFavourite(it) },
-        openDrawer = openDrawer,
-        snackbarHostState = snackbarHostState,
         navigationActions = navigationActions
     )
 }
@@ -32,10 +27,6 @@ fun FavouritesRoute(
 @Composable
 fun FavouritesRoute(
     favouritesViewModel: FavouritesViewModel,
-    uiState: FavouritesUiState,
-    onToggleFavorite: (String) -> Unit,
-    openDrawer: () -> Unit,
-    snackbarHostState: SnackbarHostState,
     navigationActions: MainNavActions
 ) {
 

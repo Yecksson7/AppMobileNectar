@@ -18,11 +18,8 @@ fun MyCartRoute(
     navigationActions: MainNavActions
 ) {
 
-    val uiState by myCartViewModel.uiState.collectAsStateWithLifecycle()
-
     MyCartRoute(
         listViewModel = myCartViewModel,
-        onToggleFavorite = { myCartViewModel.toggleFavourite(it) },
         navigationActions = navigationActions
     )
 }
@@ -30,9 +27,8 @@ fun MyCartRoute(
 @Composable
 fun MyCartRoute(
     listViewModel: MyCartViewModel,
-    onToggleFavorite: (String) -> Unit,
     navigationActions: MainNavActions
 ) {
 
-    listViewModel.getItems()?.let { MyCartScreen(it, navigationActions, PaddingValues(16.dp), onToggleFavorite) }
+    listViewModel.getItems()?.let { MyCartScreen(it, navigationActions) }
 }

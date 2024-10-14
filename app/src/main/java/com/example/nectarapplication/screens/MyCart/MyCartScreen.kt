@@ -53,8 +53,6 @@ import com.example.nectarapplication.ui.themes.softGreen
 fun MyCartScreen(
     cartProduct: List<CartProducts>,
     navigationActions: MainNavActions,
-    paddingValues: PaddingValues,
-    onToggleFavorite: (String) -> Unit
 ) {
     val state = rememberLazyListState()
     val totalPrice = cartProduct.sumOf { it.precio }
@@ -149,7 +147,7 @@ fun CartProduct(cartProduct: CartProducts, navigationActions: MainNavActions) {
     }
 }
 
-/*
+
 @Preview("Explore Screen", showBackground = true)
 @Preview("Explore Screen (dark)", uiMode = UI_MODE_NIGHT_YES)
 @Composable
@@ -157,19 +155,12 @@ fun GreetingPreview() {
     val navController = rememberNavController()
     val scope = rememberCoroutineScope()
     val drawerState = rememberDrawerState(initialValue = Closed)
-    val snackbarHostState = remember { SnackbarHostState() }
     val navigationActions = remember(navController) {
-        MainNavActions(navController, scope, drawerState, snackbarHostState)
-    }
-    val onToggleFavorite: (String) -> Unit = { productId ->
-        println("Added to favourites") // Solo imprime en la consola
+        MainNavActions(navController, scope, drawerState)
     }
 
     MyCartScreen(
         MyCartItems,
         navigationActions,
-        PaddingValues(16.dp),
-        onToggleFavorite
     )
-}*/
-//comentado por yecksson para pruebas
+}

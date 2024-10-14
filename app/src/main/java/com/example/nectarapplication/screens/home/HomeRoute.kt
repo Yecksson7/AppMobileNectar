@@ -8,39 +8,19 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.nectarapplication.MainNavActions
+import com.example.nectarapplication.data.CartProducts
 
 @Composable
 fun HomeRoute(
-    listViewModel: HomeViewModel,
-    openDrawer: () -> Unit,
-    snackbarHostState: SnackbarHostState = remember { SnackbarHostState() },
+    homeProducts: List<CartProducts>,
+    homeViewModel: HomeViewModel,
     navigationActions: MainNavActions
 ) {
 
-    val uiState by listViewModel.uiState.collectAsStateWithLifecycle()
-
-    HomeRoute(
-        listViewModel = listViewModel,
-        uiState = uiState,
-        onToggleFavorite = { listViewModel.toggleFavourite(it) },
-        openDrawer = openDrawer,
-        snackbarHostState = snackbarHostState,
-        navigationActions = navigationActions
-    )
-}
-
-@Composable
-fun HomeRoute(
-    listViewModel: HomeViewModel,
-    uiState: ListUiState,
-    onToggleFavorite: (String) -> Unit,
-    openDrawer: () -> Unit,
-    snackbarHostState: SnackbarHostState,
-    navigationActions: MainNavActions
-) {
+    val uiState by homeViewModel.uiState.collectAsStateWithLifecycle()
 
     HomeScreen(
-        navigationActions,
-        PaddingValues(16.dp),
-        onToggleFavorite)
+        cartProducts = homeProducts,
+        navigationActions = navigationActions
+    )
 }

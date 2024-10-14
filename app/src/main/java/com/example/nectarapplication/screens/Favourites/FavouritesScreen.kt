@@ -89,7 +89,7 @@ fun FavouritesScreen(
             }
         }
     }
-    ButtonFav()
+    ButtonFav("Add All To Cart")
 }
 
 @Composable
@@ -220,7 +220,7 @@ fun GreetingPreview() {
     val drawerState = rememberDrawerState(initialValue = Closed)
     val snackbarHostState = remember { SnackbarHostState() }
     val navigationActions = remember(navController) {
-        MainNavActions(navController, scope, drawerState, snackbarHostState)
+        MainNavActions(navController, scope, drawerState)
     }
     val onToggleFavorite: (String) -> Unit = { productId ->
         println("Added to favourites") // Solo imprime en la consola

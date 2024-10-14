@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
 import com.example.nectarapplication.ui.themes.softGreen
 
 @Composable
-fun ButtonFav() {
+fun ButtonFav(text: String) {
     val buttonColor = softGreen
 
     Box(
@@ -40,7 +40,7 @@ fun ButtonFav() {
                 .size(364.dp, 67.dp)
         ) {
             Text(
-                text = "Add All To Cart",
+                text = text,
                 style = typography.bodySmall,
                 modifier = Modifier.fillMaxWidth(),  // Asegura que el texto ocupe todo el ancho
                 textAlign = TextAlign.Center,        // Alinea el texto al centro
