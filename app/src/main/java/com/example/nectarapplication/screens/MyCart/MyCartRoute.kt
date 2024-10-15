@@ -1,4 +1,4 @@
-package com.example.nectarapplication.screens.home
+package com.example.nectarapplication.screens.MyCart
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material3.SnackbarHostState
@@ -9,18 +9,26 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.nectarapplication.MainNavActions
 import com.example.nectarapplication.data.CartProducts
+import com.example.nectarapplication.data.Products
 
 @Composable
-fun HomeRoute(
-    homeProducts: List<CartProducts>,
-    homeViewModel: HomeViewModel,
+fun MyCartRoute(
+    myCartItems: List<CartProducts>,
+    myCartViewModel: MyCartViewModel,
     navigationActions: MainNavActions
 ) {
 
-    val uiState by homeViewModel.uiState.collectAsStateWithLifecycle()
-
-    HomeScreen(
-        cartProducts = homeProducts,
+    MyCartRoute(
+        listViewModel = myCartViewModel,
         navigationActions = navigationActions
     )
+}
+
+@Composable
+fun MyCartRoute(
+    listViewModel: MyCartViewModel,
+    navigationActions: MainNavActions
+) {
+
+    listViewModel.getItems()?.let { MyCartScreen(it, navigationActions) }
 }

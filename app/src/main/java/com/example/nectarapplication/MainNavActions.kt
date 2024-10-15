@@ -4,6 +4,7 @@ import androidx.compose.material3.DrawerState
 import androidx.compose.material3.SnackbarHostState
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
+import com.example.nectarapplication.data.DetailProducts
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -13,6 +14,12 @@ object AppDestinations {
     const val LOGIN_ROUTE = "login"
     const val LOCATION_ROUTE = "location"
     const val SING_UP_ROUTE = "sign-up"
+    const val HOME_ROUTE = "home"
+    const val SEARCH_ROUTE = "search"
+    const val MY_CART_ROUTE = "myCart"
+    const val FAVOURITES_ROUTE = "favourites"
+    const val ACCOUNT_ROUTE = "account"
+    const val DETAIL_ROUTE = "Detail/{detailProductId}"
 }
 
 class MainNavActions(
@@ -54,88 +61,45 @@ class MainNavActions(
             launchSingleTop = true
         }
     }
-}
-
-
-
-/*
-object AppDestinations {
-    const val LIST_ITEMS_ROUTE = "home"
-    const val DETAILS_ROUTE = "detail/{bootId}"
-    const val FAVOURITES = "favourites"
-    const val PROFILE = "profile"
-    const val SETTINGS = "settings"
-}
-
-class MainNavActions(
-    navController: NavHostController,
-    scope: CoroutineScope,
-    drawerState: DrawerState,
-    snackbarHostState: SnackbarHostState
-) {
-    val navigateToList: () -> Unit = {
-        navController.navigate(AppDestinations.LIST_ITEMS_ROUTE) {
-            scope.launch {
-                drawerState.close()
-            }
-            popUpTo(navController.graph.findStartDestination().id) {
-                saveState = true
-            }
+    val navigateToHome: () -> Unit = {
+        navController.navigate(AppDestinations.HOME_ROUTE) {
+            popUpTo(navController.graph.findStartDestination().id)
             launchSingleTop = true
-            restoreState = true
         }
-    }*/
-//    val navigateToDetail: (bootID: Int) -> Unit = { bootID ->
-//        navController.navigate(
-//            AppDestinations.DETAILS_ROUTE.replace(
-//                oldValue = "{bootId}",
-//                newValue = bootID.toString()
-//            )
-//        ) {
-//            scope.launch {
-//                drawerState.close()
-//            }
-//            popUpTo(navController.graph.findStartDestination().id) {
-//                saveState = true
-//            }
-//            launchSingleTop = true
-//            restoreState = true
-//        }
-//    }
-//    val navigateToFavorite: () -> Unit = {
-//        navController.navigate(AppDestinations.FAVOURITES) {
-//            scope.launch {
-//                drawerState.close()
-//            }
-//            popUpTo(navController.graph.findStartDestination().id) {
-//                saveState = true
-//            }
-//            launchSingleTop = true
-//            restoreState = true
-//        }
-//    }
-//    val navigateToProfile: () -> Unit = {
-//        navController.navigate(AppDestinations.PROFILE) {
-//            scope.launch {
-//                drawerState.close()
-//            }
-//            popUpTo(navController.graph.findStartDestination().id) {
-//                saveState = true
-//            }
-//            launchSingleTop = true
-//            restoreState = true
-//        }
-//    }
-//    val navigateToSettings: () -> Unit = {
-//        navController.navigate(AppDestinations.SETTINGS) {
-//            scope.launch {
-//                drawerState.close()
-//            }
-//            popUpTo(navController.graph.findStartDestination().id) {
-//                saveState = true
-//            }
-//            launchSingleTop = true
-//            restoreState = true
-//        }
-//    }
-//}
+    }
+    val navigateToSearch: () -> Unit = {
+        navController.navigate(AppDestinations.SEARCH_ROUTE) {
+            popUpTo(navController.graph.findStartDestination().id)
+            launchSingleTop = true
+        }
+    }
+    val navigateToMyCart: () -> Unit = {
+        navController.navigate(AppDestinations.MY_CART_ROUTE) {
+            popUpTo(navController.graph.findStartDestination().id)
+            launchSingleTop = true
+        }
+    }
+    val navigateToFavourites: () -> Unit = {
+        navController.navigate(AppDestinations.FAVOURITES_ROUTE) {
+            popUpTo(navController.graph.findStartDestination().id)
+            launchSingleTop = true
+        }
+    }
+    val navigateToAccount: () -> Unit = {
+        navController.navigate(AppDestinations.ACCOUNT_ROUTE) {
+            popUpTo(navController.graph.findStartDestination().id)
+            launchSingleTop = true
+        }
+    }
+    val navigateToDetail: (DetailProducts: Int) -> Unit = { product ->
+        navController.navigate(
+            AppDestinations.DETAIL_ROUTE.replace(
+                oldValue = "{detailProductId}",
+                newValue = product.toString()
+            )
+        )  {
+            popUpTo(navController.graph.findStartDestination().id)
+            launchSingleTop = true
+        }
+    }
+}

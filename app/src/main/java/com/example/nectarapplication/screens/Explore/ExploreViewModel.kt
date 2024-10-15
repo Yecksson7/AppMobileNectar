@@ -38,28 +38,16 @@ class ExploreViewModel: ViewModel() {
         )
     )
 
-    val uiState = viewModelState.map(ExploreViewModelState::toUiState)
-        .stateIn(
-            viewModelScope,
-            SharingStarted.Eagerly,
-            viewModelState.value.toUiState()
-        )
-
     init {
         refresh()
 
         viewModelScope.launch {
-            /*observeFavorites().collect { favorites ->
-                viewModelState.update { it.copy(favorites = favorites) }
-            }*/
+
         }
     }
 
     fun getItems(): List<Products>? = _items.value
 
-    fun setItems(items: List<Products>) {
-        _items.value = items
-    }
 
     fun refresh() {
         viewModelState.update { it.copy(isLoading = true) }
@@ -70,11 +58,6 @@ class ExploreViewModel: ViewModel() {
         }
     }
 
-    fun toggleFavourite(productId: String) {
-        viewModelScope.launch {
-            //toggleFavorite(prosuctId)
-        }
-    }
 
     companion object {
         fun provideFactory(): ViewModelProvider.Factory = object : ViewModelProvider.Factory {

@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">Nectar Application</string>
     <string name="home_screen_title">Dhaka, Banassre</string>
+    <string name="title_bar_default">Title Bar Default</string>
+    <string name="navigation_drawer_open">Abrir Barra</string>
+    <string name="list_title_bar">Shop</string>
+    <string name="detail_title_bar">Product Detail</string>
+    <string name="explore_title_bar">Find Products</string>
+    <string name="mycart_title_bar">My Cart</string>
+    <string name="favorite_title_bar">Favourites</string>
+
 </resources>

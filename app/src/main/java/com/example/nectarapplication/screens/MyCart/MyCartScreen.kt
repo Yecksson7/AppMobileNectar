@@ -1,4 +1,4 @@
-package com.example.nectarapplication.screens.MyCartScreen
+package com.example.nectarapplication.screens.MyCart
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.Image
@@ -44,7 +44,9 @@ import com.example.nectarapplication.MainNavActions
 import com.example.nectarapplication.R
 import com.example.nectarapplication.data.CartProducts
 import com.example.nectarapplication.data.MyCartItems
+import com.example.nectarapplication.ui.components.BottomBar
 import com.example.nectarapplication.ui.components.ButtonCart
+import com.example.nectarapplication.ui.components.CartButtons
 import com.example.nectarapplication.ui.themes.WhiteApp
 import com.example.nectarapplication.ui.themes.softGreen
 
@@ -52,8 +54,6 @@ import com.example.nectarapplication.ui.themes.softGreen
 fun MyCartScreen(
     cartProduct: List<CartProducts>,
     navigationActions: MainNavActions,
-    paddingValues: PaddingValues,
-    onToggleFavorite: (String) -> Unit
 ) {
     val state = rememberLazyListState()
     val totalPrice = cartProduct.sumOf { it.precio }
@@ -75,56 +75,25 @@ fun MyCartScreen(
             state = state
         ) {
             items(cartProduct.chunked(4)) { productCart ->
-                CartProduct(
-                    cartProduct = productCart[0],
-                    navigationActions = navigationActions
-                )
-                HorizontalDivider(
-                    modifier = Modifier
-                        .fillMaxWidth() // Ancho fijo de la línea
-                        .padding(horizontal = 40.dp), // Margen en los lados
-                    color = Color.LightGray,
-                )
-                if (productCart.isNotEmpty()) {
+                productCart.forEachIndexed { index, cartProduct ->
                     CartProduct(
-                        cartProduct = productCart[1],
+                        cartProduct = cartProduct,
                         navigationActions = navigationActions
                     )
+                    if (index != productCart.lastIndex) {
+                        HorizontalDivider(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 40.dp),
+                            color = Color.LightGray,
+                        )
+                    }
                 }
-                HorizontalDivider(
-                    modifier = Modifier
-                        .fillMaxWidth() // Ancho fijo de la línea
-                        .padding(horizontal = 40.dp), // Margen en los lados
-                    color = Color.LightGray,
-                )
-                if (productCart.isNotEmpty()) {
-                    CartProduct(
-                        cartProduct = productCart[2],
-                        navigationActions = navigationActions
-                    )
-                }
-                HorizontalDivider(
-                    modifier = Modifier
-                        .fillMaxWidth() // Ancho fijo de la línea
-                        .padding(horizontal = 40.dp), // Margen en los lados
-                    color = Color.LightGray,
-                )
-                if (productCart.isNotEmpty()) {
-                    CartProduct(
-                        cartProduct = productCart[3],
-                        navigationActions = navigationActions
-                    )
-                }
-                HorizontalDivider(
-                    modifier = Modifier
-                        .fillMaxWidth() // Ancho fijo de la línea
-                        .padding(horizontal = 40.dp), // Margen en los lados
-                    color = Color.LightGray,
-                )
             }
         }
     }
     ButtonCart(totalPrice)
+    BottomBar(navigationActions)
 }
 
 @Composable
@@ -181,59 +150,6 @@ fun CartProduct(cartProduct: CartProducts, navigationActions: MainNavActions) {
 }
 
 
-@Composable
-fun CartButtons() {
-    var number by remember { mutableIntStateOf(1) }
-
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceEvenly,
-        modifier = Modifier
-            .padding(8.dp)
-
-    ) {
-        // Botón de restar
-        IconButton(
-            onClick = {
-                if (number > 1) number -= 1
-            },
-            modifier = Modifier
-                .border(1.5.dp, Color.Gray, RoundedCornerShape(12.dp))
-
-        ) {
-            Icon(
-                painter = painterResource(id = R.drawable.menos), // Icono de "menos"
-                contentDescription = "Restar",
-                tint = Color.Gray,
-            )
-        }
-
-        // Número actual
-        Text(
-            color = Color.Black,
-            text = number.toString(),
-            style = MaterialTheme.typography.bodyMedium,
-            modifier = Modifier.padding(horizontal = 16.dp)
-        )
-
-        // Botón de sumar
-        IconButton(
-            onClick = {
-                number += 1
-            },
-            modifier = Modifier
-                .border(1.5.dp, Color.Gray, RoundedCornerShape(12.dp))
-        ) {
-            Icon(
-                painter = painterResource(id = R.drawable.mas), // Icono de "más"
-                contentDescription = "Sumar",
-                tint = softGreen
-            )
-        }
-    }
-}
-
-/*
 @Preview("Explore Screen", showBackground = true)
 @Preview("Explore Screen (dark)", uiMode = UI_MODE_NIGHT_YES)
 @Composable
@@ -241,19 +157,12 @@ fun GreetingPreview() {
     val navController = rememberNavController()
     val scope = rememberCoroutineScope()
     val drawerState = rememberDrawerState(initialValue = Closed)
-    val snackbarHostState = remember { SnackbarHostState() }
     val navigationActions = remember(navController) {
-        MainNavActions(navController, scope, drawerState, snackbarHostState)
-    }
-    val onToggleFavorite: (String) -> Unit = { productId ->
-        println("Added to favourites") // Solo imprime en la consola
+        MainNavActions(navController, scope, drawerState)
     }
 
     MyCartScreen(
         MyCartItems,
         navigationActions,
-        PaddingValues(16.dp),
-        onToggleFavorite
     )
-}*/
-//comentado por yecksson para pruebas
+}

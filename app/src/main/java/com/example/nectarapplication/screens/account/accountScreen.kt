@@ -42,11 +42,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.nectarapplication.MainNavActions
 import com.example.nectarapplication.R
+import com.example.nectarapplication.ui.components.BottomBar
 
-@Preview(showBackground = true)
+//@Preview(showBackground = true)
 @Composable
-fun AccountScreen() {
+fun AccountScreen(navigationActions: MainNavActions) {
     var isDarkTheme by remember { mutableStateOf(false) }
     MaterialTheme(
         colorScheme = if (isDarkTheme) darkColorScheme() else lightColorScheme()
@@ -134,6 +136,7 @@ fun AccountScreen() {
             }
         }
     }
+    BottomBar(navigationActions)
 }
 
 

@@ -1,4 +1,4 @@
-package com.example.nectarapplication.screens.MyCartScreen
+package com.example.nectarapplication.screens.MyCart
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

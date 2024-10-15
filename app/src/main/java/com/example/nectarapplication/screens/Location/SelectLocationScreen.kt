@@ -98,7 +98,7 @@ fun SelectLocationScreen(navigationActions: MainNavActions) {
                 AddressDropdownMenu("Your area", areas)
                 Spacer(modifier = Modifier.size(60.dp))
                 Button(
-                    onClick = { /*TODO*/ },
+                    onClick = { navigationActions.navigateToHome() },
                     modifier = Modifier
                         .align(Alignment.CenterHorizontally)
                         .size(width = 250.dp, height = 50.dp),

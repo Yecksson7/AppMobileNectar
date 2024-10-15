@@ -1,4 +1,4 @@
-package com.example.nectarapplication.screens.home
+package com.example.nectarapplication.screens.Favourites
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,34 +12,34 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-sealed interface HomeUiState {
+sealed interface FavouritesUiState {
 
     val isLoading: Boolean
 
     data class init(
         override val isLoading: Boolean,
-    ) : HomeUiState
+    ) : FavouritesUiState
 }
 
-private data class HomeViewModelState(
+private data class FavouritesModelState(
     val favorites: Set<String> = emptySet(),
     val isLoading: Boolean = false,
 ) {
-    fun toUiState(): HomeUiState = HomeUiState.init(true)
+    fun toUiState(): FavouritesUiState = FavouritesUiState.init(true)
 }
 
-class HomeViewModel: ViewModel() {
+class FavouritesViewModel: ViewModel() {
     private var _items = MutableLiveData<List<CartProducts>>()
 
     private val viewModelState = MutableStateFlow(
-        HomeViewModelState(
+        FavouritesModelState(
             favorites = emptySet(),
             isLoading = true
         )
     )
 
-    val uiState = viewModelState.map(HomeViewModelState::toUiState)
-        .stateIn(
+    val uiState = viewModelState.map(FavouritesModelState::toUiState)
+        .stateIn (
             viewModelScope,
             SharingStarted.Eagerly,
             viewModelState.value.toUiState()
@@ -49,12 +49,10 @@ class HomeViewModel: ViewModel() {
         refresh()
 
         viewModelScope.launch {
-
         }
     }
 
     fun getItems(): List<CartProducts>? = _items.value
-
 
     fun refresh() {
         viewModelState.update { it.copy(isLoading = true) }
@@ -69,7 +67,7 @@ class HomeViewModel: ViewModel() {
         fun provideFactory(): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
             @Suppress("UNCHECKED_CAST")
             override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                return HomeViewModel() as T
+                return FavouritesViewModel() as T
             }
         }
     }

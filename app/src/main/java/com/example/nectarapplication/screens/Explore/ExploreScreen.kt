@@ -9,7 +9,6 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -23,7 +22,7 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.DrawerValue.Closed
+import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -54,14 +53,13 @@ import com.example.nectarapplication.MainNavActions
 import com.example.nectarapplication.R
 import com.example.nectarapplication.data.ExploreItems
 import com.example.nectarapplication.data.Products
+import com.example.nectarapplication.ui.components.BottomBar
 
 
 @Composable
 fun ExploreScreen(
     exploreItems: List<Products>,
     navigationActions: MainNavActions,
-    paddingValues: PaddingValues,
-    onToggleFavorite: (String) -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -71,6 +69,7 @@ fun ExploreScreen(
         SearchBar()
         Spacer(modifier = Modifier.height(16.dp))
         CategoryGrid(exploreItems, navigationActions)
+        BottomBar(navigationActions)
     }
 }
 
@@ -83,7 +82,7 @@ fun SearchBar() {
             .fillMaxWidth()
             .height(56.dp)
             .clip(RoundedCornerShape(12.dp))
-            .background(Color(0xFFF4F4F4)),
+            .background(Color(0xFFF4F4F4) ),
     ) {
         OutlinedTextField(
             shape = RoundedCornerShape(18.dp),
@@ -189,7 +188,6 @@ fun CategoryCard(products: Products, navigationActions: MainNavActions) {
             .clip(RoundedCornerShape(12.dp))
             .shadow(elevation = 0.dp, shape = RoundedCornerShape(8.dp))
             .clickable {
-               // navigationActions.navigateToDetail(products.id)
             }
     ) {
         Column(
@@ -215,27 +213,21 @@ fun CategoryCard(products: Products, navigationActions: MainNavActions) {
         }
     }
 }
-/*
+
 @Preview("Explore Screen", showBackground = true)
 @Preview("Explore Screen (dark)", uiMode = UI_MODE_NIGHT_YES)
 @Composable
 fun GreetingPreview() {
     val navController = rememberNavController()
     val scope = rememberCoroutineScope()
-    val drawerState = rememberDrawerState(initialValue = Closed)
+    val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val snackbarHostState = remember { SnackbarHostState() }
     val navigationActions = remember(navController) {
-        MainNavActions(navController, scope, drawerState, snackbarHostState)
-    }
-    val onToggleFavorite: (String) -> Unit = { productId ->
-        println("Added to favourites") // Solo imprime en la consola
+        MainNavActions(navController, scope, drawerState)
     }
 
     ExploreScreen(
         ExploreItems,
         navigationActions,
-        PaddingValues(16.dp),
-        onToggleFavorite
     )
-}*/
-//comentado por yecksson para prueba
+}

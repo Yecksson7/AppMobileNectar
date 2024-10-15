@@ -1,5 +1,6 @@
 package com.example.nectarapplication.ui.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -20,15 +21,17 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.nectarapplication.MainNavActions
 import com.example.nectarapplication.R
 
 @Composable
-fun CustomBottomBar(navController: NavController) {
+fun BottomBar(navigationActions: MainNavActions) {
     BottomAppBar(
         modifier = Modifier
             .fillMaxWidth()
             .shadow(8.dp, RoundedCornerShape(12.dp))
-            .clip(shape = RoundedCornerShape(12.dp),),
+            .clip(shape = RoundedCornerShape(12.dp)
+            ),
         containerColor = Color.White,
         tonalElevation = 5.dp,
 
@@ -49,6 +52,7 @@ fun CustomBottomBar(navController: NavController) {
                     modifier = Modifier
                         .size(30.dp)
                         .weight(1f)
+                        .clickable { navigationActions.navigateToHome()}
                 )
                 Text(text = "Shop", color = Color.Black, fontSize = 12.sp)
             }
@@ -66,6 +70,7 @@ fun CustomBottomBar(navController: NavController) {
                     modifier = Modifier
                         .size(30.dp)
                         .weight(1f)
+                        .clickable { navigationActions.navigateToSearch()}
                 )
                 Text(text = "Explore", color = Color.Black, fontSize = 12.sp)
             }
@@ -83,6 +88,7 @@ fun CustomBottomBar(navController: NavController) {
                     modifier = Modifier
                         .size(30.dp)
                         .weight(1f)
+                        .clickable { navigationActions.navigateToMyCart()}
                 )
                 Text(text = "Cart", color = Color.Black, fontSize = 12.sp)
             }
@@ -100,6 +106,7 @@ fun CustomBottomBar(navController: NavController) {
                     modifier = Modifier
                         .size(30.dp)
                         .weight(1f)
+                        .clickable { navigationActions.navigateToFavourites()}
                 )
                 Text(text = "Favourites", color = Color.Black, fontSize = 12.sp)
             }
@@ -117,6 +124,7 @@ fun CustomBottomBar(navController: NavController) {
                     modifier = Modifier
                         .size(30.dp)
                         .weight(1f)
+                        .clickable { navigationActions.navigateToAccount()}
                 )
                 Text(text = "Profile", color = Color.Black, fontSize = 12.sp)
             }
