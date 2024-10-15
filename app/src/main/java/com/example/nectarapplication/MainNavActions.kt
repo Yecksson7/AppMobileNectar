@@ -15,11 +15,17 @@ object AppDestinations {
     const val LOCATION_ROUTE = "location"
     const val SING_UP_ROUTE = "sign-up"
     const val HOME_ROUTE = "home"
-    const val SEARCH_ROUTE = "search"
+    const val EXPLORE_ROUTE = "explore"
     const val MY_CART_ROUTE = "myCart"
     const val FAVOURITES_ROUTE = "favourites"
     const val ACCOUNT_ROUTE = "account"
-    const val DETAIL_ROUTE = "Detail/{detailProductId}"
+    const val DETAIL_ROUTE = "detail/{detailProductId}"
+    const val CATEGORIES_ROUTE = "categories"
+    const val SEARCH_ROUTE = "search"
+    const val FILTERS_ROUTE = "filters"
+    const val CHECK_OUT_ROUTE = "check out"
+    const val ORDER_ACCEPTED_ROUTE = "order accepted"
+
 }
 
 class MainNavActions(
@@ -67,8 +73,8 @@ class MainNavActions(
             launchSingleTop = true
         }
     }
-    val navigateToSearch: () -> Unit = {
-        navController.navigate(AppDestinations.SEARCH_ROUTE) {
+    val navigateToExplore: () -> Unit = {
+        navController.navigate(AppDestinations.EXPLORE_ROUTE) {
             popUpTo(navController.graph.findStartDestination().id)
             launchSingleTop = true
         }
@@ -98,6 +104,37 @@ class MainNavActions(
                 newValue = product.toString()
             )
         )  {
+            popUpTo(navController.graph.findStartDestination().id)
+            launchSingleTop = true
+        }
+    }
+
+    val navigateToCheckOut: () -> Unit = {
+        navController.navigate(AppDestinations.CHECK_OUT_ROUTE) {
+            popUpTo(navController.graph.findStartDestination().id)
+            launchSingleTop = true
+        }
+    }
+    val navigateToSearch: () -> Unit = {
+        navController.navigate(AppDestinations.SEARCH_ROUTE) {
+            popUpTo(navController.graph.findStartDestination().id)
+            launchSingleTop = true
+        }
+    }
+    val navigateToFilters: () -> Unit = {
+        navController.navigate(AppDestinations.FILTERS_ROUTE) {
+            popUpTo(navController.graph.findStartDestination().id)
+            launchSingleTop = true
+        }
+    }
+    val navigateToCategories: () -> Unit = {
+        navController.navigate(AppDestinations.CATEGORIES_ROUTE) {
+            popUpTo(navController.graph.findStartDestination().id)
+            launchSingleTop = true
+        }
+    }
+    val navigateToOrderAccepted: () -> Unit = {
+        navController.navigate(AppDestinations.ORDER_ACCEPTED_ROUTE) {
             popUpTo(navController.graph.findStartDestination().id)
             launchSingleTop = true
         }

@@ -19,6 +19,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.nectarapplication.MainNavActions
 
 
 @Composable
@@ -49,7 +50,7 @@ fun CustomCheckbox(
 
 @Preview
 @Composable
-fun FiltersPopup() {
+fun FiltersPopup(navigationActions: MainNavActions) {
     var categoryEggs by remember { mutableStateOf(true) }
     var categoryNoodles by remember { mutableStateOf(false) }
     var categoryChips by remember { mutableStateOf(false) }

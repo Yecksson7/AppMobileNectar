@@ -3,40 +3,31 @@ package com.example.nectarapplication
 import androidx.compose.runtime.Composable
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
-import com.example.nectarapplication.data.DetailItems
-import com.example.nectarapplication.data.DetailProducts
 import com.example.nectarapplication.data.ExploreItems
 import com.example.nectarapplication.data.FavouritesItems
 import com.example.nectarapplication.data.HomeProducts
 import com.example.nectarapplication.data.MyCartItems
 import com.example.nectarapplication.screens.Detail.DetailRoute
-import com.example.nectarapplication.screens.Detail.DetailScreen
 import com.example.nectarapplication.screens.Detail.DetailViewModel
-import com.example.nectarapplication.screens.Explore.ExploreRoute
 import com.example.nectarapplication.screens.Explore.ExploreScreen
-import com.example.nectarapplication.screens.Explore.ExploreViewModel
-import com.example.nectarapplication.screens.Favourites.FavouritesRoute
 import com.example.nectarapplication.screens.Favourites.FavouritesScreen
-import com.example.nectarapplication.screens.Favourites.FavouritesViewModel
 import com.example.nectarapplication.screens.Location.SelectLocationScreen
-import com.example.nectarapplication.screens.MyCart.MyCartRoute
 import com.example.nectarapplication.screens.MyCart.MyCartScreen
-import com.example.nectarapplication.screens.MyCart.MyCartViewModel
 import com.example.nectarapplication.screens.account.AccountScreen
-import com.example.nectarapplication.screens.home.HomeRoute
+import com.example.nectarapplication.screens.categories.BeveragesScreenPreview
+import com.example.nectarapplication.screens.checkout.CheckoutPopupScreen
+import com.example.nectarapplication.screens.filters.FiltersPopup
 import com.example.nectarapplication.screens.home.HomeScreen
-import com.example.nectarapplication.screens.home.HomeViewModel
 import com.example.nectarapplication.screens.login.LoginScreen
 import com.example.nectarapplication.screens.login.LoginViewModel
 import com.example.nectarapplication.screens.onboarding.OnboardingScreen
+import com.example.nectarapplication.screens.orderAccepted.OrderAcceptedScreenPreview
+import com.example.nectarapplication.screens.search.SearchScreenPreview
 import com.example.nectarapplication.screens.singUp.SignUpScreen
 import com.example.nectarapplication.screens.splash.SplashScreen
-import com.google.android.gms.analytics.ecommerce.Product
 
 @Composable
 fun MainNavGraph(
@@ -137,6 +128,36 @@ fun MainNavGraph(
         composable(AppDestinations.ACCOUNT_ROUTE) {
             //  viewModel.setTitle("Profile Screen")
             AccountScreen(
+                navigationActions = navigationActions
+            )
+        }
+        composable(AppDestinations.CATEGORIES_ROUTE) {
+            //  viewModel.setTitle("Profile Screen")
+            BeveragesScreenPreview(
+                navigationActions = navigationActions
+            )
+        }
+        composable(AppDestinations.FILTERS_ROUTE) {
+            //  viewModel.setTitle("Profile Screen")
+            FiltersPopup(
+                navigationActions = navigationActions
+            )
+        }
+        composable(AppDestinations.CHECK_OUT_ROUTE) {
+            //  viewModel.setTitle("Profile Screen")
+            CheckoutPopupScreen(
+                navigationActions = navigationActions
+            )
+        }
+        composable(AppDestinations.SEARCH_ROUTE) {
+            //  viewModel.setTitle("Profile Screen")
+            SearchScreenPreview(
+                navigationActions = navigationActions
+            )
+        }
+        composable(AppDestinations.ORDER_ACCEPTED_ROUTE) {
+            //  viewModel.setTitle("Profile Screen")
+            OrderAcceptedScreenPreview(
                 navigationActions = navigationActions
             )
         }

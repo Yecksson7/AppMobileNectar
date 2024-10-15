@@ -33,11 +33,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.nectarapplication.MainNavActions
 import com.example.nectarapplication.R
 
 
 @Composable
-fun CheckoutPopupScreen() {
+fun CheckoutPopupScreen(navigationActions: MainNavActions) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -85,9 +86,9 @@ fun CheckoutPopupScreen() {
 
                     Spacer(modifier = Modifier.height(24.dp)) // Espacio reducido entre el título y los items
 
-                    // Cada opción con menor separación
+
                     CheckoutOptionWithArrow(label = "Delivery", value = "Select Method")
-                    Divider(color = Color.LightGray, thickness = 1.dp, modifier = Modifier.padding(vertical = 8.dp)) // Línea divisoria
+                    Divider(color = Color.LightGray, thickness = 1.dp, modifier = Modifier.padding(vertical = 8.dp))
                     CheckoutOptionWithArrow(label = "Payment", value = "", iconRes = R.drawable.payment_checkout)
                     Divider(color = Color.LightGray, thickness = 1.dp, modifier = Modifier.padding(vertical = 8.dp))
                     CheckoutOptionWithArrow(label = "Promo Code", value = "Pick discount")
@@ -134,7 +135,7 @@ fun CheckoutOptionWithArrow(label: String, value: String, iconRes: Int? = null) 
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 8.dp), // Reducimos la separación entre las filas
+            .padding(vertical = 8.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -151,7 +152,7 @@ fun CheckoutOptionWithArrow(label: String, value: String, iconRes: Int? = null) 
             }
             Spacer(modifier = Modifier.width(8.dp))
 
-            // Icono de flecha con el layout solicitado
+
             Icon(
                 painter = painterResource(id = R.drawable.close_check_out), // Reemplaza con el ícono de flecha correcto
                 contentDescription = "Back Arrow",
