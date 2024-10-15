@@ -21,8 +21,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.foundation.shape.CircleShape
+import com.example.nectarapplication.MainNavActions
 import com.example.nectarapplication.R
 
 // Definimos las fuentes utilizando fuentes disponibles por defecto
@@ -71,8 +70,8 @@ fun ProductCard(imageRes: Int, name: String, volume: String, price: String) {
         colors = CardDefaults.cardColors(containerColor = Color(0xFFFFFFFF)), // Color del fondo de las cards
         elevation = CardDefaults.cardElevation(defaultElevation = 1.dp), // Reducimos la sombra
         modifier = Modifier
-            .width(160.dp) // Ancho reducido
-            .height(220.dp) // Alto ajustado
+            .width(160.dp)
+            .height(220.dp)
             .padding(8.dp)
     ) {
         Column(
@@ -159,7 +158,7 @@ fun BeveragesScreen() {
             Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(Color(0xFFFFFFFF)) // Color de fondo igual al de las cards
+                    .background(Color(0xFFFFFFFF))
                     .padding(paddingValues)
             ) {
                 LazyVerticalGrid(
@@ -190,15 +189,15 @@ fun BeveragesScreen() {
             }
         },
         bottomBar = {
-            HomeIndicator() // Agregamos el Home Indicator
+            HomeIndicator()
         }
     )
 }
 
-// Definimos el Home Indicator con sus propiedades
+
 @Composable
 fun HomeIndicator() {
-    Column( // Usamos Column para poder centrar el Home Indicator
+    Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier.fillMaxWidth()
     ) {
@@ -218,8 +217,8 @@ fun HomeIndicator() {
 
 data class Product(val name: String, val volume: String, val price: String, val imageRes: Int)
 
-@Preview(showBackground = true)
+
 @Composable
-fun BeveragesScreenPreview() {
+fun BeveragesScreenPreview(navigationActions: MainNavActions) {
     BeveragesScreen()
 }

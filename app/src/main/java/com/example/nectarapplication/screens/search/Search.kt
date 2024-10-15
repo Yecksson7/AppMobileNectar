@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
+import com.example.nectarapplication.MainNavActions
 import com.example.nectarapplication.R
 
 
@@ -165,7 +166,7 @@ fun BottomNavigationBar() {
             BottomBarItem(iconRes = R.drawable.shopsearch)
             BottomBarItem(iconRes = R.drawable.exploreseach, tint = Color(0xFF53B175))
             BottomBarItem(iconRes = R.drawable.carritosearch)
-            BottomBarItem(iconRes = R.drawable.favsearch)
+            BottomBarItem(iconRes = R.drawable.lupa___copia)
             BottomBarItem(iconRes = R.drawable.accountsearch)
         }
     }
@@ -277,9 +278,9 @@ fun ProductCard(imageRes: Int, name: String, volume: String, price: String) {
 
 data class Product(val name: String, val volume: String, val price: String, val imageRes: Int)
 
-@Preview(showBackground = true)
+
 @Composable
-fun SearchScreenPreview() {
+fun SearchScreenPreview(navigationActions: MainNavActions) {
     SearchScreen()
 }
 
