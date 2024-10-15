@@ -22,22 +22,22 @@ class LocationViewModel : ViewModel() {
         viewModelScope.launch {
             _isLoading.value = true
             try {
-                // Aquí deberías reemplazar esto con tu llamada a la API para obtener la lista de zonas
-                val zones = getListaZona() // Supón que tienes una función para obtener datos
+
+                val zones = getListaZona()
                 _zoneList.value = zones
             } catch (e: Exception) {
-                // Manejo de errores
-                _zoneList.value = emptyList() // O puedes manejar errores de otra manera
+
+                _zoneList.value = emptyList()
             } finally {
                 _isLoading.value = false
             }
         }
     }
 
-    // Simulación de carga de zonas (reemplazar con la llamada real)
+
     private suspend fun fetchZonesFromApi(): List<String> {
-        // Simula un retraso para la carga
-        delay(2000) // Simulación de tiempo de carga
-        return listOf("Zone 1", "Zone 2", "Zone 3") // Devuelve una lista simulada
+
+        delay(2000)
+        return listOf("Zone 1", "Zone 2", "Zone 3")
     }
 }

@@ -182,9 +182,9 @@ fun descriptionAccount(){
                 fontWeight = androidx.compose.ui.text.font.FontWeight.Bold, fontSize = 17.sp)
             Spacer(modifier = Modifier.size(10.dp))
             Image(
-                painter = painterResource(id = R.drawable.lapiz), // Reemplaza con el ID de tu icono
+                painter = painterResource(id = R.drawable.lapiz),
                 contentDescription = null,
-                modifier = Modifier.size(17.dp) // Ajusta el tamaño del icono según sea necesario
+                modifier = Modifier.size(17.dp)
             )
 
         }

@@ -56,7 +56,7 @@ fun PreviewLoginScreen() {
 fun LoginScreen(loginViewModel: LoginViewModel = viewModel(), navigationActions: MainNavActions) {
 
     var expandedState by remember { mutableStateOf(false) }
-    //var indicaError by remember { mutableStateOf(false) }
+
 
 
     val isLoading by loginViewModel.isLoading.observeAsState(false)
@@ -178,106 +178,7 @@ fun LoginScreen(loginViewModel: LoginViewModel = viewModel(), navigationActions:
     }
 }
 
-/*
-    //val email by remember { mutableStateOf("") }
-   // val password by remember { mutableStateOf("") }
-    var indicaError by remember { mutableStateOf(false) }
-    var loginState by remember { mutableStateOf(loginViewModel.loginState) }
 
-
-    Box(modifier = Modifier.fillMaxSize()){
-        Image(
-            painter = painterResource(id = R.drawable.fondologin),
-            contentDescription = "Onboarding Image",
-            contentScale = ContentScale.Crop,
-            modifier = Modifier.fillMaxSize()
-        )
-        Column(modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-            verticalArrangement = Arrangement.Top){
-
-
-
-
-            Spacer(modifier = Modifier.size(60.dp))
-
-            Image(painter = painterResource(id = R.drawable.zanahoria_naranja),
-                contentDescription =null,
-                modifier = Modifier
-                    .align(Alignment.CenterHorizontally)
-                    .size(40.dp)
-            )
-            Spacer(modifier = Modifier.size(50.dp))
-
-            Text("Sign in",
-                fontWeight = FontWeight.Bold,
-                fontSize = 20.sp
-                )
-            Spacer(modifier = Modifier.size(10.dp))
-
-            Text(text = "Enter your emails and password", fontSize = 13.sp, color = Color.Gray)
-            Spacer(modifier = Modifier.size(40.dp))
-
-            Text(text = "Email",color = Color.Gray)
-            EmailTextField(onEmailChange = { loginViewModel.username = it })
-
-            Spacer(modifier = Modifier.size(25.dp))
-
-            Text(text = "Password",color = Color.Gray)
-
-            PasswordTextField(onPasswordChange = { loginViewModel.password = it })
-
-            Text(text = "Forgot Password?",
-                color = Color.Black, fontSize = 10.sp,
-                modifier = Modifier.align(Alignment.End)
-            )
-
-            Spacer(modifier = Modifier.size(30.dp))
-            MensajeDeError(indicaError)
-
-            Button(onClick = { loginViewModel.login() },
-                modifier = Modifier
-                    .align(Alignment.CenterHorizontally)
-                    .size(width = 250.dp, height = 50.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF53B175)))
-            {
-                Text("Log In",
-                    color = Color.White)
-            }
-            Spacer(modifier = Modifier.size(25.dp))
-
-
-            Row(modifier = Modifier.align(Alignment.CenterHorizontally)) {
-                Spacer(modifier = Modifier.size(10.dp))
-                Text(text = "Don't have an account? ",
-                    color = Color.Black,
-                    fontSize = 10.sp)
-                GreenText("Sign up")
-            }
-
-        }
-    }
-    when (loginState) {
-        is LoginState.Loading -> {
-            CircularProgressIndicator() // Mostrar estado de carga
-        }
-
-        is LoginState.Success -> {
-            navigationActions.navigateToLocation()
-        }
-
-        is LoginState.Error -> {
-            indicaError = true
-        }
-        LoginState.Idle -> {
-            // No hacer nada
-        }
-
-    }
-
-
-}*/
 
 @Composable
 fun GreenText(palabra:String) {

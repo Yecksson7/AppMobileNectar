@@ -24,7 +24,7 @@ fun SplashScreen(navigationActions: MainNavActions) {
     Box(modifier = Modifier
         .fillMaxSize()
         .background(color = Color(0xFF53B175))
-        .clickable { navigationActions.navigateToOnboarding()})//agrege la ruta de onboarding y el parametro que recibe la funcion
+        .clickable { navigationActions.navigateToOnboarding()})
     {
         Column (modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,

@@ -50,7 +50,7 @@ fun OnboardingScreen(navigationActions: MainNavActions) {
             Text(text = "Get your groceries in as gast as one hour",
                 color = androidx.compose.ui.graphics.Color.White)
                 Spacer(modifier = Modifier.size(20.dp))
-            Button(onClick = { navigationActions.navigateToLogin() },//agregue la ruta de login
+            Button(onClick = { navigationActions.navigateToLogin() },
                 modifier = Modifier.size(width = 250.dp, height = 50.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = androidx.compose.ui.graphics.Color(0xFF53B175))) {
                 Text("Get Started",
