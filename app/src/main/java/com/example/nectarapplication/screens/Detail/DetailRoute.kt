@@ -1,7 +1,6 @@
 package com.example.nectarapplication.screens.Detail
 
 import androidx.compose.runtime.Composable
-import com.example.nectarapplication.MainNavActions
 
 @Composable
 fun DetailRoute(

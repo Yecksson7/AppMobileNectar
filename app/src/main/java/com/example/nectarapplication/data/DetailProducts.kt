@@ -2,6 +2,7 @@ package com.example.nectarapplication.data
 
 import androidx.compose.runtime.Immutable
 
+
 @Immutable
 data class DetailProducts(
     val id: Int,
