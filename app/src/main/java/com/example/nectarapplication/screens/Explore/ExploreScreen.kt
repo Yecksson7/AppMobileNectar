@@ -88,7 +88,6 @@ fun ExploreScreen(
     }
 }
 
-    @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     fun SearchBar(navigationActions: MainNavActions) {
         val searchBar by remember { mutableStateOf("Search Store") }
@@ -96,8 +95,8 @@ fun ExploreScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(56.dp)
-                .clip(RoundedCornerShape(12.dp))
-                .background(Color(0xFFF4F4F4)),
+//                .clip(RoundedCornerShape(12.dp))
+//                .background(Color(0xFFF4F4F4)),
         ) {
             OutlinedTextField(
                 shape = RoundedCornerShape(18.dp),
@@ -111,7 +110,7 @@ fun ExploreScreen(
                     cursorColor = softGrey,
                     focusedTextColor = softGrey,
                     focusedLabelColor = softGrey,
-                    unfocusedTextColor = Color.Gray,
+                    unfocusedTextColor = softGrey,
                 ),
                 textStyle = LocalTextStyle.current.copy(fontSize = 16.sp),
                 singleLine = true,
@@ -119,8 +118,8 @@ fun ExploreScreen(
             IconButton(
                 onClick = {  },
                 modifier = Modifier
-                    .align(Alignment.CenterStart) // Alinear a la izquierda
-                    .padding(start = 12.dp) // Espaciado para el ícono
+                    .align(Alignment.CenterStart)
+                    .padding(start = 12.dp)
             ) {
                 Icon(
                     painter = painterResource(id = R.drawable.lupa___copia),
@@ -134,8 +133,8 @@ fun ExploreScreen(
                 text = searchBar,
                 color = Color.Gray,
                 modifier = Modifier
-                    .align(Alignment.CenterStart) // Alineación a la izquierda
-                    .padding(start = 60.dp) // Espaciado para evitar superposición con el ícono
+                    .align(Alignment.CenterStart)
+                    .padding(start = 60.dp)
                     .fillMaxWidth(),
                 fontSize = 16.sp
             )
@@ -143,7 +142,7 @@ fun ExploreScreen(
             IconButton(
                 onClick = { navigationActions.navigateToFilters() },
                 modifier = Modifier
-                    .align(Alignment.CenterEnd) // Alinear a la derecha
+                    .align(Alignment.CenterEnd)
                     .padding(end = 30.dp)
 
             ) {

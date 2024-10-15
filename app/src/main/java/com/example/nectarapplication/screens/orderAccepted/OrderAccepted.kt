@@ -20,7 +20,7 @@ import com.example.nectarapplication.MainNavActions
 import com.example.nectarapplication.R
 
 @Composable
-fun OrderAcceptedScreen() {
+fun OrderAcceptedScreen(navigationActions: MainNavActions) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -84,7 +84,7 @@ fun OrderAcceptedScreen() {
 
         // Botón blanco "Back to home"
         Button(
-            onClick = { /* Acción para regresar a home */ },
+            onClick = { navigationActions.navigateToHome() },
             colors = ButtonDefaults.buttonColors(containerColor = Color.White),
             shape = RoundedCornerShape(30.dp),
             modifier = Modifier
@@ -105,5 +105,5 @@ fun OrderAcceptedScreen() {
 
 @Composable
 fun OrderAcceptedScreenPreview(navigationActions: MainNavActions) {
-    OrderAcceptedScreen()
+    OrderAcceptedScreen(navigationActions)
 }

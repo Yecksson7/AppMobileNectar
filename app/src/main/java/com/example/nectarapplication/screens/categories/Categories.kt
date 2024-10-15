@@ -24,40 +24,40 @@ import androidx.compose.ui.unit.sp
 import com.example.nectarapplication.MainNavActions
 import com.example.nectarapplication.R
 
-// Definimos las fuentes utilizando fuentes disponibles por defecto
+
 val DefaultBold = FontFamily.SansSerif
 val DefaultMedium = FontFamily.SansSerif
 val DefaultRoboto = FontFamily.Default
 
-@OptIn(ExperimentalMaterial3Api::class)
+
 @Composable
 fun CustomTopAppBar(title: String, onBackClick: () -> Unit) {
     // TopAppBar con color gris claro
     Surface(
-        color = Color(0xFFF1F1F1), // Color gris claro solo para la Top App Bar
+        color = Color(0xFFF1F1F1),
         modifier = Modifier
             .fillMaxWidth()
-            .height(64.dp) // Tamaño limitado
+            .height(64.dp)
     ) {
         Box(
-            modifier = Modifier.fillMaxSize() // Caja contenedora para manejar la alineación
+            modifier = Modifier.fillMaxSize()
         ) {
-            // Botón de retroceso alineado a la izquierda (Start)
+
             IconButton(
                 onClick = { onBackClick() },
-                modifier = Modifier.align(Alignment.CenterStart) // Alineación dentro del Box
+                modifier = Modifier.align(Alignment.CenterStart)
             ) {
                 Icon(Icons.Default.ArrowBack, contentDescription = "Back", tint = Color(0xFF1A1A1A))
             }
 
-            // Título centrado
+
             Text(
                 text = title,
                 fontFamily = DefaultRoboto,
-                fontSize = 20.sp, // Tamaño ajustado
+                fontSize = 20.sp,
                 fontWeight = FontWeight.Normal,
-                color = Color(0xFF1A1A1A),  // Color del texto
-                modifier = Modifier.align(Alignment.Center) // Centramos el texto
+                color = Color(0xFF1A1A1A),
+                modifier = Modifier.align(Alignment.Center)
             )
         }
     }
@@ -67,69 +67,69 @@ fun CustomTopAppBar(title: String, onBackClick: () -> Unit) {
 fun ProductCard(imageRes: Int, name: String, volume: String, price: String) {
     Card(
         shape = RoundedCornerShape(8.dp),
-        colors = CardDefaults.cardColors(containerColor = Color(0xFFFFFFFF)), // Color del fondo de las cards
-        elevation = CardDefaults.cardElevation(defaultElevation = 1.dp), // Reducimos la sombra
+        colors = CardDefaults.cardColors(containerColor = Color(0xFFFFFFFF)),
+        elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
         modifier = Modifier
             .width(160.dp)
             .height(220.dp)
             .padding(8.dp)
     ) {
         Column(
-            horizontalAlignment = Alignment.Start, // Alineado a la izquierda
+            horizontalAlignment = Alignment.Start,
             verticalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier
                 .padding(8.dp)
                 .fillMaxHeight()
         ) {
-            // Imagen del producto
+
             Image(
                 painter = painterResource(imageRes),
                 contentDescription = name,
                 contentScale = ContentScale.Fit,
                 modifier = Modifier
-                    .height(90.dp) // Tamaño ajustado
+                    .height(90.dp)
                     .fillMaxWidth()
             )
-            // Nombre del producto
+
             Text(
                 text = name,
                 fontFamily = DefaultBold,
-                fontSize = 14.sp, // Tamaño reducido
+                fontSize = 14.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color(0xFF1A1A1A),
                 modifier = Modifier.padding(top = 8.dp)
             )
-            // Volumen y texto "Price"
+
             Text(
                 text = "$volume, Price",
                 fontFamily = DefaultMedium,
-                fontSize = 12.sp, // Tamaño reducido
+                fontSize = 12.sp,
                 fontWeight = FontWeight.Medium,
                 color = Color(0xFF7D7D7D),
                 modifier = Modifier.padding(top = 4.dp)
             )
-            // Alineamos el precio y el botón "+" en la parte inferior de la tarjeta
+
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 8.dp),
-                horizontalArrangement = Arrangement.SpaceBetween, // Precio a la izquierda, botón a la derecha
+                horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.Bottom
             ) {
-                // Precio alineado a la izquierda
+
                 Text(
                     text = price,
                     fontFamily = DefaultBold,
-                    fontSize = 16.sp, // Tamaño ajustado
+                    fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color(0xFF1A1A1A)
                 )
-                // Botón "+"
+
                 Box(
                     modifier = Modifier
                         .size(36.dp)
-                        .background(Color(0xFF53B175), RoundedCornerShape(4.dp)) // Botón cuadrado
-                        .align(Alignment.Bottom) // Alineado abajo
+                        .background(Color(0xFF53B175), RoundedCornerShape(4.dp))
+                        .align(Alignment.Bottom)
                 ) {
                     Text(
                         text = "+",
@@ -144,7 +144,7 @@ fun ProductCard(imageRes: Int, name: String, volume: String, price: String) {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
+
 @Composable
 fun BeveragesScreen(navigationActions: MainNavActions) {
     Scaffold(
@@ -205,10 +205,10 @@ fun HomeIndicator() {
             modifier = Modifier
                 .width(134.dp)
                 .height(5.dp)
-                .background(Color.Black, shape = RoundedCornerShape(topStart = 100.dp)) // Fondo negro y bordes redondeados en la parte superior
+                .background(Color.Black, shape = RoundedCornerShape(topStart = 100.dp))
                 .border(
                     width = 1.dp,
-                    color = Color(0xFFE5E5E5), // Borde gris claro
+                    color = Color(0xFFE5E5E5),
                     shape = RoundedCornerShape(topStart = 100.dp)
                 )
         )

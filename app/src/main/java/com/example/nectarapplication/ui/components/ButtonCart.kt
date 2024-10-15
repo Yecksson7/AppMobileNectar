@@ -18,11 +18,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.example.nectarapplication.MainNavActions
 import com.example.nectarapplication.ui.themes.softGreen
 
 
 @Composable
-fun ButtonCart(totalPrice: Double) {
+fun ButtonCart(totalPrice: Double, navActions: MainNavActions) {
     val buttonColor = softGreen
 
     Box(
@@ -32,7 +33,7 @@ fun ButtonCart(totalPrice: Double) {
         // Botón flotante al final de la pantalla
         Button(
             shape = RoundedCornerShape(18.dp),
-            onClick = { /* Acción del botón */ },
+            onClick = { navActions.navigateToCheckOut() },
             colors = ButtonDefaults.buttonColors(
                 contentColor = Color.White,
                 containerColor = buttonColor

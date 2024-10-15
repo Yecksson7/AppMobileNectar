@@ -80,32 +80,41 @@ fun MyCartScreen(
                     .fillMaxSize(),
                 contentAlignment = Alignment.BottomCenter
             ) {
-            LazyColumn(
-                modifier = Modifier
-                    .fillMaxSize(),
-                state = state
-            ) {
-                items(cartProduct.chunked(4)) { productCart ->
-                    productCart.forEachIndexed { index, cartProduct ->
-                        CartProduct(
-                            cartProduct = cartProduct,
-                            navigationActions = navigationActions
-                        )
-                        if (index != productCart.lastIndex) {
-                            HorizontalDivider(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(horizontal = 40.dp),
-                                color = Color.LightGray,
-                            )
+                    LazyColumn(
+                        modifier = Modifier
+                            .fillMaxSize(),
+                        state = state
+                    ) {
+                        items(cartProduct.chunked(4)) { productCart ->
+                            productCart.forEachIndexed { index, cartProduct ->
+                                CartProduct(
+                                    cartProduct = cartProduct,
+                                    navigationActions = navigationActions
+                                )
+                                if (index != productCart.lastIndex) {
+                                    HorizontalDivider(
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .padding(horizontal = 40.dp),
+                                        color = Color.LightGray,
+                                    )
+                                }
+                            }
                         }
                     }
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(bottom = 80.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Spacer(modifier = Modifier.weight(1f))
+                    ButtonCart(totalPrice = totalPrice, navigationActions)
                 }
+
+                BottomBar(navigationActions = navigationActions)
             }
-            ButtonCart(totalPrice)
-            BottomBar(navigationActions)
-            }
-    }
+        }
 }
 
 @Composable

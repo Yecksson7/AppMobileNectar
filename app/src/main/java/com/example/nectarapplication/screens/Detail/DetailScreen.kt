@@ -15,18 +15,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
-import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.DrawerValue.Closed
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
-import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -36,8 +30,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.compose.rememberNavController
-import com.example.nectarapplication.MainNavActions
 import com.example.nectarapplication.R
 import com.example.nectarapplication.data.DetailItems
 import com.example.nectarapplication.data.DetailProducts
@@ -51,7 +43,6 @@ import com.example.nectarapplication.ui.themes.naranjaEstrellas
 @Composable
 fun DetailScreen(
     detailProduct: DetailProducts,
-
 ) {
 
     Column(
@@ -136,7 +127,7 @@ fun DetailScreen(
             color = Color.LightGray,
         )
         Row {
-            // Contenido principal
+
             Text(
                 text = "Product Detail",
                 color = Color.Black,
@@ -152,7 +143,7 @@ fun DetailScreen(
                 tint = Color.Black,
                 modifier = Modifier
                     .size(38.dp)
-                    .padding(8.dp) // Opcional: agregar padding para separar del borde
+                    .padding(8.dp)
             )
         }
         Text(
@@ -161,7 +152,7 @@ fun DetailScreen(
             fontSize = 12.sp,
             lineHeight = 14.sp,
             modifier = Modifier
-                .padding(6.dp) // Agregar padding si es necesario
+                .padding(6.dp)
         )
         HorizontalDivider(
             modifier = Modifier
@@ -197,7 +188,7 @@ fun DetailScreen(
                     text = "100gm",
                     fontSize = 7.sp,
                     style = MaterialTheme.typography.bodyMedium,
-                    modifier = Modifier.align(Alignment.Center) // Centrar verticalmente
+                    modifier = Modifier.align(Alignment.Center)
                 )
             }
 
