@@ -36,7 +36,6 @@ import com.example.nectarapplication.R
 import com.example.nectarapplication.screens.login.GreenText
 import com.example.nectarapplication.screens.login.PasswordTextField
 
-//@Preview(showBackground = true)
 @Composable
 fun SignUpScreen(navigationActions: MainNavActions) {
     var password by remember { mutableStateOf("") }
@@ -120,14 +119,9 @@ fun SignUpScreen(navigationActions: MainNavActions) {
                 Row (Modifier.clickable { navigationActions.navigateToLogin()}){
                     GreenText("Log in")
                 }
-
             }
-
-
-
         }
     }
-
 }
 
 

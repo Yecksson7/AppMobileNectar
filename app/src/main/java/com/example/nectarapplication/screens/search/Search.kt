@@ -53,7 +53,6 @@ fun SearchScreen(navigationsActions: MainNavActions) {
                         bottom = 16.dp
                     )
                 ) {
-                    // Cards de productos
                     items(listOf(
                         Product("Egg Chicken Red", "4pcs", "$1.99", R.drawable.huevos),
                         Product("Egg Chicken White", "180g", "$1.50", R.drawable.huevos2),
@@ -74,42 +73,6 @@ fun SearchScreen(navigationsActions: MainNavActions) {
         }
     )
     HomeIndicator()
-}
-
-@Composable
-fun SearchTopAppBar() {
-    Surface(
-        color = Color.White,
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(64.dp)
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            IconButton(
-                onClick = { /* Acción del botón de menú */ }
-            ) {
-                Icon(Icons.Default.Menu, contentDescription = "Menu", tint = Color(0xFF1A1A1A))
-            }
-
-            Text(
-                text = "Search",
-                fontFamily = FontFamily.Default,
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color(0xFF1A1A1A),
-                modifier = Modifier.align(Alignment.CenterVertically),
-                textAlign = androidx.compose.ui.text.style.TextAlign.Center
-            )
-
-            Spacer(modifier = Modifier.width(48.dp)) // Espacio para mantener el texto centrado
-        }
-    }
 }
 
 @Composable
@@ -146,44 +109,6 @@ fun SearchBar() {
     }
 }
 
-//@Composable
-//fun BottomNavigationBar() {
-//    // Barra de navegación inferior con íconos más grandes y sin texto, y sombra en el contorno superior
-//    Surface(
-//        modifier = Modifier
-//            .fillMaxWidth()
-//            .height(92.dp)
-//            .clip(RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp))
-//            .shadow(4.dp, RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp)), // Sombra al contorno superior
-//        color = Color.White
-//    ) {
-//        Row(
-//            modifier = Modifier
-//                .fillMaxWidth()
-//                .padding(horizontal = 16.dp),
-//            horizontalArrangement = Arrangement.SpaceAround,
-//            verticalAlignment = Alignment.CenterVertically
-//        ) {
-//            BottomBarItem(iconRes = R.drawable.shopsearch)
-//            BottomBarItem(iconRes = R.drawable.exploreseach, tint = Color(0xFF53B175))
-//            BottomBarItem(iconRes = R.drawable.carritosearch)
-//            BottomBarItem(iconRes = R.drawable.favourites)
-//            BottomBarItem(iconRes = R.drawable.accountsearch)
-//        }
-//    }
-//}
-//
-//@Composable
-//fun BottomBarItem(iconRes: Int, tint: Color = Color.Black) {
-//    // Íconos más grandes y sin texto en la Bottom Bar
-//    Icon(
-//        painter = painterResource(id = iconRes),
-//        contentDescription = null, // Quitamos el texto para evitar duplicación
-//        tint = tint,
-//        modifier = Modifier.size(36.dp) // Aumentamos el tamaño de los íconos
-//    )
-//}
-
 @Composable
 fun HomeIndicator() {
     Box(
@@ -202,7 +127,6 @@ fun HomeIndicator() {
     }
 }
 
-//  tarjetas de productos
 @Composable
 fun ProductCard(imageRes: Int, name: String, volume: String, price: String) {
     Card(
@@ -279,11 +203,5 @@ fun ProductCard(imageRes: Int, name: String, volume: String, price: String) {
 
 data class Product(val name: String, val volume: String, val price: String, val imageRes: Int)
 
-//@Preview(showBackground = true)
-//@Composable
-//fun SearchScreenPreview() {
-//    val navActions = MainNavActions
-//    SearchScreen(navActions)
-//}
 
 

@@ -33,7 +33,6 @@ fun CartButtons() {
             .padding(8.dp)
 
     ) {
-        // Botón de restar
         IconButton(
             onClick = {
                 if (number > 1) number -= 1
@@ -43,21 +42,17 @@ fun CartButtons() {
 
         ) {
             Icon(
-                painter = painterResource(id = R.drawable.menos), // Icono de "menos"
+                painter = painterResource(id = R.drawable.menos),
                 contentDescription = "Restar",
                 tint = Color.Gray,
             )
         }
-
-        // Número actual
         Text(
             color = Color.Black,
             text = number.toString(),
             style = MaterialTheme.typography.bodyMedium,
             modifier = Modifier.padding(horizontal = 16.dp)
         )
-
-        // Botón de sumar
         IconButton(
             onClick = {
                 number += 1
@@ -66,7 +61,7 @@ fun CartButtons() {
                 .border(1.5.dp, Color.Gray, RoundedCornerShape(12.dp))
         ) {
             Icon(
-                painter = painterResource(id = R.drawable.mas), // Icono de "más"
+                painter = painterResource(id = R.drawable.mas),
                 contentDescription = "Sumar",
                 tint = softGreen
             )

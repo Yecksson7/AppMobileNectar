@@ -30,7 +30,6 @@ fun ButtonCart(totalPrice: Double, navActions: MainNavActions) {
         modifier = Modifier
             .fillMaxSize()
     ) {
-        // Botón flotante al final de la pantalla
         Button(
             shape = RoundedCornerShape(18.dp),
             onClick = { navActions.navigateToCheckOut() },
@@ -39,7 +38,7 @@ fun ButtonCart(totalPrice: Double, navActions: MainNavActions) {
                 containerColor = buttonColor
             ),
             modifier = Modifier
-                .align(Alignment.BottomCenter) // Alinea el botón en la parte inferior
+                .align(Alignment.BottomCenter)
                 .size(364.dp, 67.dp)
         ) {
             Text(
@@ -53,36 +52,3 @@ fun ButtonCart(totalPrice: Double, navActions: MainNavActions) {
         }
     }
 }
-
-
-
-//@Composable
-//fun ButtonCart(totalPrice: Double) {
-//    val buttonColor = softGreen
-//
-//    Box(
-//        modifier = Modifier
-//            .fillMaxSize() // Ocupa todo el espacio de la pantalla
-//            .padding(bottom = 24.dp) // Espacio inferior opcional
-//    ) {
-//        Button(
-//            shape = RoundedCornerShape(18.dp),
-//            onClick = { },
-//            colors = ButtonDefaults.buttonColors(
-//                contentColor = Color.White,
-//                containerColor = buttonColor
-//            ),
-//            modifier = Modifier
-//                .align(Alignment.BottomCenter) // Alinea el botón en la parte inferior
-//                .size(364.dp, 67.dp)
-//        ) {
-//            Text(
-//                text = "             Go to Checkout          $totalPrice",
-//                style = typography.bodySmall,
-//                modifier = Modifier.fillMaxWidth(),  // Asegura que el texto ocupe todo el ancho
-//                textAlign = TextAlign.Center,        // Alinea el texto al centro
-//                fontWeight = FontWeight.Bold
-//            )
-//        }
-//    }
-//}

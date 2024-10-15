@@ -122,36 +122,34 @@ fun CartProduct(cartProduct: CartProducts, navigationActions: MainNavActions) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 14.dp, horizontal = 16.dp), // Añadimos espacio entre los elementos
+            .padding(vertical = 14.dp, horizontal = 16.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        // Imagen del producto
+
         Image(
             painter = painterResource(id = cartProduct.image),
             contentDescription = cartProduct.title,
             modifier = Modifier
                 .padding(20.dp)
-                .size(70.dp) // Tamaño de la imagen ajustado
+                .size(70.dp)
         )
 
-        Spacer(modifier = Modifier.width(6.dp)) // Espacio entre imagen y texto
+        Spacer(modifier = Modifier.width(6.dp))
 
-        // Columna con título, porción y botones
         Column(
             verticalArrangement = Arrangement.Center,
             modifier = Modifier
-                .weight(1f) // Ocupa el espacio restante
+                .weight(1f)
         ) {
             Text(text = cartProduct.title, color = Color.Black, style = MaterialTheme.typography.bodyMedium)
             Text(text = cartProduct.porcion, color = Color.Gray, style = MaterialTheme.typography.bodySmall)
-            CartButtons() // Botones de aumentar/disminuir cantidad
+            CartButtons()
         }
 
-        // Columna con icono de cierre y precio
         Column(
-            horizontalAlignment = Alignment.End, // Alineamos al final (derecha)
-            verticalArrangement = Arrangement.SpaceBetween, // Espacio entre icono y precio
+            horizontalAlignment = Alignment.End,
+            verticalArrangement = Arrangement.SpaceBetween,
         ) {
             Icon(
                 painter = painterResource(id = R.drawable.equis),
@@ -160,7 +158,7 @@ fun CartProduct(cartProduct: CartProducts, navigationActions: MainNavActions) {
                 modifier = Modifier
                     .size(14.dp)
             )
-            Spacer(modifier = Modifier.height(50.dp)) // Separación entre icono y precio
+            Spacer(modifier = Modifier.height(50.dp))
             Text(
                 text = "$${cartProduct.precio}",
                 color = Color.Black,
@@ -168,22 +166,4 @@ fun CartProduct(cartProduct: CartProducts, navigationActions: MainNavActions) {
             )
         }
     }
-}
-
-
-@Preview("Explore Screen", showBackground = true)
-@Preview("Explore Screen (dark)", uiMode = UI_MODE_NIGHT_YES)
-@Composable
-fun GreetingPreview() {
-    val navController = rememberNavController()
-    val scope = rememberCoroutineScope()
-    val drawerState = rememberDrawerState(initialValue = Closed)
-    val navigationActions = remember(navController) {
-        MainNavActions(navController, scope, drawerState)
-    }
-
-    MyCartScreen(
-        MyCartItems,
-        navigationActions,
-    )
 }

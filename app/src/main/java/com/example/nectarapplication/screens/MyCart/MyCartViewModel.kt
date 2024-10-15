@@ -49,17 +49,12 @@ class MyCartViewModel: ViewModel() {
         refresh()
 
         viewModelScope.launch {
-            /*observeFavorites().collect { favorites ->
-                viewModelState.update { it.copy(favorites = favorites) }
-            }*/
+
         }
     }
 
     fun getItems(): List<CartProducts>? = _items.value
 
-    fun setItems(items: List<CartProducts>) {
-        _items.value = items
-    }
 
     fun refresh() {
         viewModelState.update { it.copy(isLoading = true) }
@@ -67,12 +62,6 @@ class MyCartViewModel: ViewModel() {
             viewModelState.update {
                 it.copy(isLoading = false)
             }
-        }
-    }
-
-    fun toggleFavourite(productId: String) {
-        viewModelScope.launch {
-            //toggleFavorite(prosuctId)
         }
     }
 

@@ -24,9 +24,8 @@ fun OrderAcceptedScreen(navigationActions: MainNavActions) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White) // Fondo blanco
+            .background(Color.White)
     ) {
-        // Logo del tildé verde
         Image(
             painter = painterResource(id = R.drawable.tilde_verde), // Reemplaza con el recurso correcto de la imagen
             contentDescription = "Order Accepted",
@@ -35,8 +34,6 @@ fun OrderAcceptedScreen(navigationActions: MainNavActions) {
                 .height(240.31.dp)
                 .absoluteOffset(x = 58.46.dp, y = 151.7.dp)
         )
-
-        // Texto "Your Order has been accepted"
         Text(
             text = "Your Order has been\naccepted",
             fontFamily = FontFamily.SansSerif,
@@ -49,8 +46,6 @@ fun OrderAcceptedScreen(navigationActions: MainNavActions) {
                 .height(68.dp)
                 .absoluteOffset(x = 74.5.dp, y = 458.67.dp)
         )
-
-        // Texto "Your items has been placed..."
         Text(
             text = "Your items has been placed and is on\nits way to being processed",
             fontFamily = FontFamily.SansSerif,
@@ -63,8 +58,6 @@ fun OrderAcceptedScreen(navigationActions: MainNavActions) {
                 .height(42.dp)
                 .absoluteOffset(x = 68.dp, y = 546.67.dp)
         )
-
-        // Botón verde "Track Order"
         Button(
             onClick = { /* Acción para rastrear la orden */ },
             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF53B175)),
@@ -82,7 +75,6 @@ fun OrderAcceptedScreen(navigationActions: MainNavActions) {
             )
         }
 
-        // Botón blanco "Back to home"
         Button(
             onClick = { navigationActions.navigateToHome() },
             colors = ButtonDefaults.buttonColors(containerColor = Color.White),

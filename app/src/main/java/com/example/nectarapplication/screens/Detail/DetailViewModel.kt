@@ -38,27 +38,12 @@ class DetailViewModel: ViewModel() {
         )
     )
 
-    val uiState = viewModelState.map(DetailViewModelState::toUiState)
-        .stateIn(
-            viewModelScope,
-            SharingStarted.Eagerly,
-            viewModelState.value.toUiState()
-        )
-
     init {
         refresh()
 
         viewModelScope.launch {
-            /*observeFavorites().collect { favorites ->
-                viewModelState.update { it.copy(favorites = favorites) }
-            }*/
+
         }
-    }
-
-    fun getItems(): List<DetailProducts>? = _items.value
-
-    fun setItems(items: List<DetailProducts>) {
-        _items.value = items
     }
 
     fun refresh() {
@@ -70,11 +55,6 @@ class DetailViewModel: ViewModel() {
         }
     }
 
-    fun toggleFavourite(bootId: String) {
-        viewModelScope.launch {
-            //toggleFavorite(bootId)
-        }
-    }
 
     companion object {
         fun provideFactory(): ViewModelProvider.Factory = object : ViewModelProvider.Factory {

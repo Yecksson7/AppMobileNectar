@@ -64,7 +64,6 @@ fun DetailScreen(
                 .size(413.6.dp, 280.44.dp)
                 .align(Alignment.Start)
         ) {
-
             Image(
                 painterResource(id = detailProduct.image),
                 contentDescription = "Detail Product",
@@ -268,14 +267,3 @@ fun TopBarBack(title: String, navActions: MainNavActions) {
         )
     )
 }
-
-//@Preview("Explore Screen", showBackground = true)
-//@Preview("Explore Screen (dark)", uiMode = UI_MODE_NIGHT_YES)
-//@Composable
-//fun GreetingPreview() {
-//
-//    DetailScreen(
-//        detailProduct = DetailItems[1],
-//        navActions = MainNavActions()
-//    )
-//}

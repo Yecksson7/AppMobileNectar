@@ -11,14 +11,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.nectarapplication.R
 import androidx.compose.ui.graphics.Color
 import com.example.nectarapplication.MainNavActions
 
 
-//@Preview(showBackground = true)
 @Composable
 fun SplashScreen(navigationActions: MainNavActions) {
     Box(modifier = Modifier
@@ -35,11 +33,6 @@ fun SplashScreen(navigationActions: MainNavActions) {
                 modifier = Modifier
                     .size(190.dp)
             )
-
-
         }
-
-
-
     }
 }

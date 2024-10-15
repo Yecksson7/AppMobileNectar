@@ -25,8 +25,8 @@ fun ButtonFav(text: String) {
 
     Box(
         modifier = Modifier
-            .fillMaxSize() // Ocupa todo el espacio de la pantalla
-            .padding(bottom = 24.89.dp) // Espacio inferior opcional
+            .fillMaxSize()
+            .padding(bottom = 24.89.dp)
     ) {
         Button(
             shape = RoundedCornerShape(18.dp),
@@ -36,14 +36,14 @@ fun ButtonFav(text: String) {
                 containerColor = buttonColor
             ),
             modifier = Modifier
-                .align(Alignment.BottomCenter) // Alinea el botón en la parte inferior
+                .align(Alignment.BottomCenter)
                 .size(364.dp, 67.dp)
         ) {
             Text(
                 text = text,
                 style = typography.bodySmall,
-                modifier = Modifier.fillMaxWidth(),  // Asegura que el texto ocupe todo el ancho
-                textAlign = TextAlign.Center,        // Alinea el texto al centro
+                modifier = Modifier.fillMaxWidth(),
+                textAlign = TextAlign.Center,
                 fontWeight = FontWeight.Bold
             )
         }

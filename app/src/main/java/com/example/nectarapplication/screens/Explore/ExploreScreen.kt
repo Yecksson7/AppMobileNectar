@@ -95,8 +95,7 @@ fun ExploreScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(56.dp)
-//                .clip(RoundedCornerShape(12.dp))
-//                .background(Color(0xFFF4F4F4)),
+
         ) {
             OutlinedTextField(
                 shape = RoundedCornerShape(18.dp),
@@ -227,20 +226,3 @@ fun CategoryCard(products: Products, navigationActions: MainNavActions) {
     }
 }
 
-@Preview("Explore Screen", showBackground = true)
-@Preview("Explore Screen (dark)", uiMode = UI_MODE_NIGHT_YES)
-@Composable
-fun GreetingPreview() {
-    val navController = rememberNavController()
-    val scope = rememberCoroutineScope()
-    val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
-    val snackbarHostState = remember { SnackbarHostState() }
-    val navigationActions = remember(navController) {
-        MainNavActions(navController, scope, drawerState)
-    }
-
-    ExploreScreen(
-        ExploreItems,
-        navigationActions,
-    )
-}
