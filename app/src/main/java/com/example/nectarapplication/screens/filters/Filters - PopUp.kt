@@ -48,7 +48,7 @@ fun CustomCheckbox(
     }
 }
 
-@Preview
+
 @Composable
 fun FiltersPopup(navigationActions: MainNavActions) {
     var categoryEggs by remember { mutableStateOf(true) }
@@ -80,7 +80,7 @@ fun FiltersPopup(navigationActions: MainNavActions) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 // Close Button
-                IconButton(onClick = { /* Acción para cerrar */ }) {
+                IconButton(onClick = { navigationActions.navigateToExplore() }) {
                     Icon(Icons.Default.Close, contentDescription = "Close")
                 }
 
@@ -174,7 +174,7 @@ fun FiltersPopup(navigationActions: MainNavActions) {
 
                     // Apply Filter Button
                     Button(
-                        onClick = { /* Acción para aplicar filtros */ },
+                        onClick = { navigationActions.navigateToSearch() },
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(56.dp),

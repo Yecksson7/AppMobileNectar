@@ -60,11 +60,6 @@ fun MyCartScreen(
 ) {
     val state = rememberLazyListState()
     val totalPrice = cartProduct.sumOf { it.precio }
-    Box(
-        modifier = Modifier
-            .fillMaxSize(),
-        contentAlignment = Alignment.BottomCenter
-    ) {
 
         Column(
             modifier = Modifier
@@ -80,6 +75,11 @@ fun MyCartScreen(
                     .fillMaxWidth(), // Ancho fijo de la línea
                 color = Color.LightGray,
             )
+            Box(
+                modifier = Modifier
+                    .fillMaxSize(),
+                contentAlignment = Alignment.BottomCenter
+            ) {
             LazyColumn(
                 modifier = Modifier
                     .fillMaxSize(),
@@ -103,8 +103,8 @@ fun MyCartScreen(
                 }
             }
             ButtonCart(totalPrice)
-        }
-        BottomBar(navigationActions)
+            BottomBar(navigationActions)
+            }
     }
 }
 

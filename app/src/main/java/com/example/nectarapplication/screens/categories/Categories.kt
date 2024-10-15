@@ -146,12 +146,12 @@ fun ProductCard(imageRes: Int, name: String, volume: String, price: String) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BeveragesScreen() {
+fun BeveragesScreen(navigationActions: MainNavActions) {
     Scaffold(
         topBar = {
             CustomTopAppBar(
                 title = "Beverages",
-                onBackClick = { /* Acción al hacer clic en el botón de retroceso */ }
+                onBackClick = { navigationActions.navigateToExplore() }
             )
         },
         content = { paddingValues ->
@@ -220,5 +220,5 @@ data class Product(val name: String, val volume: String, val price: String, val 
 
 @Composable
 fun BeveragesScreenPreview(navigationActions: MainNavActions) {
-    BeveragesScreen()
+    BeveragesScreen(navigationActions)
 }

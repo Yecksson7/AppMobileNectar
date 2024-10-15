@@ -69,13 +69,14 @@ fun HomeScreen(navController: NavHostController, cartProducts: List<CartProducts
             .fillMaxSize(),
         contentAlignment = Alignment.BottomCenter
     ) {
-        TopBarWithMenu(stringResource(id = R.string.list_title_bar))
+
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .background(WhiteApp)
                 .verticalScroll(rememberScrollState())
         ) {
+            TopBarWithMenu(stringResource(id = R.string.list_title_bar))
             LocationBar()
             ExclusiveOfferSection(cartProducts, navigationActions, navController)
             BestSellingSection(cartProducts, navigationActions, navController)

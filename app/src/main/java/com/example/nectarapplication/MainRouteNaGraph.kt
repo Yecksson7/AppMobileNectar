@@ -25,7 +25,7 @@ import com.example.nectarapplication.screens.login.LoginScreen
 import com.example.nectarapplication.screens.login.LoginViewModel
 import com.example.nectarapplication.screens.onboarding.OnboardingScreen
 import com.example.nectarapplication.screens.orderAccepted.OrderAcceptedScreenPreview
-import com.example.nectarapplication.screens.search.SearchScreenPreview
+import com.example.nectarapplication.screens.search.SearchScreen
 import com.example.nectarapplication.screens.singUp.SignUpScreen
 import com.example.nectarapplication.screens.splash.SplashScreen
 
@@ -91,7 +91,7 @@ fun MainNavGraph(
                 navigationActions = navigationActions,
             )
         }
-        composable(AppDestinations.SEARCH_ROUTE) {
+        composable(AppDestinations.EXPLORE_ROUTE) {
             //  viewModel.setTitle("Login Screen")
 //            val exploreViewModel: ExploreViewModel = viewModel()
             ExploreScreen(
@@ -151,8 +151,8 @@ fun MainNavGraph(
         }
         composable(AppDestinations.SEARCH_ROUTE) {
             //  viewModel.setTitle("Profile Screen")
-            SearchScreenPreview(
-                navigationActions = navigationActions
+            SearchScreen(
+                navigationsActions = navigationActions
             )
         }
         composable(AppDestinations.ORDER_ACCEPTED_ROUTE) {

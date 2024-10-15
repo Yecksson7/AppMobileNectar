@@ -70,7 +70,6 @@ fun ExploreScreen(
             .fillMaxSize(),
         contentAlignment = Alignment.BottomCenter
     ) {
-        TopBarWithMenu(stringResource(id = R.string.explore_title_bar))
 
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -79,6 +78,8 @@ fun ExploreScreen(
                 .fillMaxSize()
                 .padding(16.dp)
         ) {
+            TopBarWithMenu(stringResource(id = R.string.explore_title_bar))
+            Spacer(modifier = Modifier.height(16.dp))
             SearchBar(navigationActions)
             Spacer(modifier = Modifier.height(16.dp))
             CategoryGrid(exploreItems, navigationActions)
@@ -140,7 +141,7 @@ fun ExploreScreen(
             )
 
             IconButton(
-                onClick = { /* TODO: Acción del icono de configuración */ },
+                onClick = { navigationActions.navigateToFilters() },
                 modifier = Modifier
                     .align(Alignment.CenterEnd) // Alinear a la derecha
                     .padding(end = 30.dp)
@@ -201,8 +202,7 @@ fun CategoryCard(products: Products, navigationActions: MainNavActions) {
             .padding(6.dp)
             .clip(RoundedCornerShape(12.dp))
             .shadow(elevation = 0.dp, shape = RoundedCornerShape(8.dp))
-            .clickable {
-            }
+            .clickable { navigationActions.navigateToCategories() }
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,

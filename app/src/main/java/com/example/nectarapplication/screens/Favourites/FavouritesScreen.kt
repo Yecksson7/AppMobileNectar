@@ -65,14 +65,12 @@ fun FavouritesScreen(
             .fillMaxSize(),
         contentAlignment = Alignment.BottomCenter
     ) {
-        TopBarWithMenu(stringResource(id = R.string.favorite_title_bar))
-
         Column(
             modifier = Modifier
                 .background(WhiteApp)
                 .fillMaxSize()
         ) {
-
+            TopBarWithMenu(stringResource(id = R.string.favorite_title_bar))
             Spacer(modifier = Modifier.height(16.dp))
 
             HorizontalDivider(
@@ -80,27 +78,33 @@ fun FavouritesScreen(
                     .fillMaxWidth(), // Ancho fijo de la línea
                 color = Color.LightGray,
             )
-            LazyColumn(
+            Box(
                 modifier = Modifier
                     .fillMaxSize(),
-                state = state
+                contentAlignment = Alignment.BottomCenter
             ) {
-                items(cartProduct.chunked(4)) { productCart ->
-                    productCart.forEachIndexed { index, cartProduct ->
-                        CartProduct(
-                            cartProduct = cartProduct,
-                            navigationActions = navigationActions
-                        )
-                        HorizontalDivider(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(horizontal = 40.dp),
-                            color = Color.LightGray,
-                        )
+                LazyColumn(
+                    modifier = Modifier
+                        .fillMaxSize(),
+                    state = state
+                ) {
+                    items(cartProduct.chunked(4)) { productCart ->
+                        productCart.forEachIndexed { index, cartProduct ->
+                            CartProduct(
+                                cartProduct = cartProduct,
+                                navigationActions = navigationActions
+                            )
+                            HorizontalDivider(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(horizontal = 40.dp),
+                                color = Color.LightGray,
+                            )
+                        }
                     }
                 }
+                ButtonFav("Add All To Cart")
             }
-            ButtonFav("Add All To Cart")
         }
         BottomBar(navigationActions)
     }

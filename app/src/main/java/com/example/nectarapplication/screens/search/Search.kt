@@ -13,7 +13,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -23,9 +22,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.res.stringResource
 import com.example.nectarapplication.MainNavActions
 import com.example.nectarapplication.R
@@ -34,10 +31,10 @@ import com.example.nectarapplication.ui.components.BottomBar
 
 
 @Composable
-fun SearchScreen(navActions: MainNavActions) {
+fun SearchScreen(navigationsActions: MainNavActions) {
     Scaffold(
         topBar = { TopBarWithMenu(stringResource(id = R.string.search_title_bar)) },
-        bottomBar = { BottomBar(navActions) },
+        bottomBar = { BottomBar(navigationsActions) },
         content = { paddingValues ->
             Column(
                 modifier = Modifier
