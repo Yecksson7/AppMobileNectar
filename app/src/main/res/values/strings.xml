@@ -8,5 +8,7 @@
     <string name="explore_title_bar">Find Products</string>
     <string name="mycart_title_bar">My Cart</string>
     <string name="favorite_title_bar">Favourites</string>
+    <string name="search_title_bar">Search</string>
+
 
 </resources>

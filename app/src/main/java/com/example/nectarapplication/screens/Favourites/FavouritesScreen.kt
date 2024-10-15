@@ -66,6 +66,7 @@ fun FavouritesScreen(
         contentAlignment = Alignment.BottomCenter
     ) {
         TopBarWithMenu(stringResource(id = R.string.favorite_title_bar))
+
         Column(
             modifier = Modifier
                 .background(WhiteApp)

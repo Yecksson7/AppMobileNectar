@@ -45,6 +45,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -54,7 +55,9 @@ import com.example.nectarapplication.MainNavActions
 import com.example.nectarapplication.R
 import com.example.nectarapplication.data.ExploreItems
 import com.example.nectarapplication.data.Products
+import com.example.nectarapplication.screens.account.TopBarWithMenu
 import com.example.nectarapplication.ui.components.BottomBar
+import com.example.nectarapplication.ui.themes.softGrey
 
 
 @Composable
@@ -67,12 +70,16 @@ fun ExploreScreen(
             .fillMaxSize(),
         contentAlignment = Alignment.BottomCenter
     ) {
+        TopBarWithMenu(stringResource(id = R.string.explore_title_bar))
+
+        Spacer(modifier = Modifier.height(16.dp))
+
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(16.dp)
         ) {
-            SearchBar()
+            SearchBar(navigationActions)
             Spacer(modifier = Modifier.height(16.dp))
             CategoryGrid(exploreItems, navigationActions)
         }
@@ -82,7 +89,7 @@ fun ExploreScreen(
 
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
-    fun SearchBar() {
+    fun SearchBar(navigationActions: MainNavActions) {
         val searchBar by remember { mutableStateOf("Search Store") }
         Box(
             modifier = Modifier
@@ -98,18 +105,18 @@ fun ExploreScreen(
                 modifier = Modifier
                     .size(364.dp, 51.57.dp),
                 colors = TextFieldDefaults.colors(
-                    focusedContainerColor = Color.LightGray,
-                    unfocusedContainerColor = Color.LightGray,
-                    cursorColor = Color.LightGray,
-                    focusedTextColor = Color.LightGray,
-                    focusedLabelColor = Color.LightGray,
+                    focusedContainerColor = softGrey,
+                    unfocusedContainerColor = softGrey,
+                    cursorColor = softGrey,
+                    focusedTextColor = softGrey,
+                    focusedLabelColor = softGrey,
                     unfocusedTextColor = Color.Gray,
                 ),
                 textStyle = LocalTextStyle.current.copy(fontSize = 16.sp),
                 singleLine = true,
             )
             IconButton(
-                onClick = { /* TODO: Acción del icono de búsqueda */ },
+                onClick = {  },
                 modifier = Modifier
                     .align(Alignment.CenterStart) // Alinear a la izquierda
                     .padding(start = 12.dp) // Espaciado para el ícono

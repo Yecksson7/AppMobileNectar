@@ -13,6 +13,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -25,14 +26,18 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.res.stringResource
+import com.example.nectarapplication.MainNavActions
 import com.example.nectarapplication.R
+import com.example.nectarapplication.screens.account.TopBarWithMenu
+import com.example.nectarapplication.ui.components.BottomBar
 
 
 @Composable
-fun SearchScreen() {
+fun SearchScreen(navActions: MainNavActions) {
     Scaffold(
-        topBar = { SearchTopAppBar() },
-        bottomBar = { BottomNavigationBar() },
+        topBar = { TopBarWithMenu(stringResource(id = R.string.search_title_bar)) },
+        bottomBar = { BottomBar(navActions) },
         content = { paddingValues ->
             Column(
                 modifier = Modifier
@@ -144,43 +149,43 @@ fun SearchBar() {
     }
 }
 
-@Composable
-fun BottomNavigationBar() {
-    // Barra de navegación inferior con íconos más grandes y sin texto, y sombra en el contorno superior
-    Surface(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(92.dp)
-            .clip(RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp))
-            .shadow(4.dp, RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp)), // Sombra al contorno superior
-        color = Color.White
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp),
-            horizontalArrangement = Arrangement.SpaceAround,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            BottomBarItem(iconRes = R.drawable.shopsearch)
-            BottomBarItem(iconRes = R.drawable.exploreseach, tint = Color(0xFF53B175))
-            BottomBarItem(iconRes = R.drawable.carritosearch)
-            BottomBarItem(iconRes = R.drawable.favsearch)
-            BottomBarItem(iconRes = R.drawable.accountsearch)
-        }
-    }
-}
-
-@Composable
-fun BottomBarItem(iconRes: Int, tint: Color = Color.Black) {
-    // Íconos más grandes y sin texto en la Bottom Bar
-    Icon(
-        painter = painterResource(id = iconRes),
-        contentDescription = null, // Quitamos el texto para evitar duplicación
-        tint = tint,
-        modifier = Modifier.size(36.dp) // Aumentamos el tamaño de los íconos
-    )
-}
+//@Composable
+//fun BottomNavigationBar() {
+//    // Barra de navegación inferior con íconos más grandes y sin texto, y sombra en el contorno superior
+//    Surface(
+//        modifier = Modifier
+//            .fillMaxWidth()
+//            .height(92.dp)
+//            .clip(RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp))
+//            .shadow(4.dp, RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp)), // Sombra al contorno superior
+//        color = Color.White
+//    ) {
+//        Row(
+//            modifier = Modifier
+//                .fillMaxWidth()
+//                .padding(horizontal = 16.dp),
+//            horizontalArrangement = Arrangement.SpaceAround,
+//            verticalAlignment = Alignment.CenterVertically
+//        ) {
+//            BottomBarItem(iconRes = R.drawable.shopsearch)
+//            BottomBarItem(iconRes = R.drawable.exploreseach, tint = Color(0xFF53B175))
+//            BottomBarItem(iconRes = R.drawable.carritosearch)
+//            BottomBarItem(iconRes = R.drawable.favourites)
+//            BottomBarItem(iconRes = R.drawable.accountsearch)
+//        }
+//    }
+//}
+//
+//@Composable
+//fun BottomBarItem(iconRes: Int, tint: Color = Color.Black) {
+//    // Íconos más grandes y sin texto en la Bottom Bar
+//    Icon(
+//        painter = painterResource(id = iconRes),
+//        contentDescription = null, // Quitamos el texto para evitar duplicación
+//        tint = tint,
+//        modifier = Modifier.size(36.dp) // Aumentamos el tamaño de los íconos
+//    )
+//}
 
 @Composable
 fun HomeIndicator() {
@@ -277,10 +282,11 @@ fun ProductCard(imageRes: Int, name: String, volume: String, price: String) {
 
 data class Product(val name: String, val volume: String, val price: String, val imageRes: Int)
 
-@Preview(showBackground = true)
-@Composable
-fun SearchScreenPreview() {
-    SearchScreen()
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun SearchScreenPreview() {
+//    val navActions = MainNavActions
+//    SearchScreen(navActions)
+//}
 
 

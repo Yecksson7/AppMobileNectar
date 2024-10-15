@@ -65,12 +65,13 @@ fun MyCartScreen(
             .fillMaxSize(),
         contentAlignment = Alignment.BottomCenter
     ) {
-        TopBarWithMenu(stringResource(id = R.string.mycart_title_bar))
+
         Column(
             modifier = Modifier
                 .background(WhiteApp)
                 .fillMaxSize()
         ) {
+            TopBarWithMenu(stringResource(id = R.string.mycart_title_bar))
 
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -101,8 +102,8 @@ fun MyCartScreen(
                     }
                 }
             }
+            ButtonCart(totalPrice)
         }
-        ButtonCart(totalPrice)
         BottomBar(navigationActions)
     }
 }
