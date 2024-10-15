@@ -20,6 +20,7 @@ import com.example.nectarapplication.screens.Favourites.FavouritesViewModel
 import com.example.nectarapplication.screens.Location.SelectLocationScreen
 import com.example.nectarapplication.screens.MyCart.MyCartRoute
 import com.example.nectarapplication.screens.MyCart.MyCartViewModel
+import com.example.nectarapplication.screens.account.AccountScreen
 import com.example.nectarapplication.screens.home.HomeRoute
 import com.example.nectarapplication.screens.home.HomeScreen
 import com.example.nectarapplication.screens.home.HomeViewModel
@@ -125,11 +126,11 @@ fun MainNavGraph(
                 detailViewModel = detailViewModel,
             )
         }
-//        composable(AppDestinations.ACCOUNT_ROUTE) {
-//            //  viewModel.setTitle("Profile Screen")
-//
-//            accountScreen(
-//            )
-//        }
+        composable(AppDestinations.ACCOUNT_ROUTE) {
+            //  viewModel.setTitle("Profile Screen")
+            AccountScreen(
+                navigationActions = navigationActions
+            )
+        }
     }
 }

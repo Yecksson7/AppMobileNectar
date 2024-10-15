@@ -7,6 +7,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -54,6 +55,7 @@ import com.example.nectarapplication.MainNavActions
 import com.example.nectarapplication.R
 import com.example.nectarapplication.data.CartProducts
 import com.example.nectarapplication.data.HomeProducts
+import com.example.nectarapplication.ui.components.BottomBar
 import com.example.nectarapplication.ui.themes.Purple40
 import com.example.nectarapplication.ui.themes.WhiteApp
 import com.example.nectarapplication.ui.themes.softGreen
@@ -63,15 +65,22 @@ fun HomeScreen(
     cartProducts: List<CartProducts>,
     navigationActions: MainNavActions,
 ) {
-    Column(
+    Box(
         modifier = Modifier
-            .fillMaxSize()
-            .background(WhiteApp)
-            .verticalScroll(rememberScrollState())
+            .fillMaxSize(),
+        contentAlignment = Alignment.BottomCenter
     ) {
-        LocationBar()
-        ExclusiveOfferSection(cartProducts, navigationActions)
-        BestSellingSection(cartProducts,navigationActions)
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(WhiteApp)
+                .verticalScroll(rememberScrollState())
+        ) {
+            LocationBar()
+            ExclusiveOfferSection(cartProducts, navigationActions)
+            BestSellingSection(cartProducts, navigationActions)
+        }
+        BottomBar(navigationActions)
     }
 }
 
@@ -148,7 +157,7 @@ fun ProductCard(cartProducts: CartProducts, navigationActions: MainNavActions) {
             .clip(RoundedCornerShape(12.dp))
             .shadow(elevation = 10.dp, shape = RoundedCornerShape(8.dp))
             .clickable {
-              //  navigationActions.navigateToDetail(cartProducts.id)
+              navigationActions.navigateToDetail(cartProducts.id)
             }
     ) {
         Column(

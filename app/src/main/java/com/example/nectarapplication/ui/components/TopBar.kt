@@ -4,11 +4,9 @@ import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.CenterAlignedTopAppBar
-import androidx.compose.material3.DrawerState
 import androidx.compose.material3.DrawerValue.Closed
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -30,8 +28,6 @@ import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.nectarapplication.MainActivityViewModel
 import com.example.nectarapplication.R
 import com.example.nectarapplication.ui.themes.WhiteApp
 import kotlinx.coroutines.CoroutineScope
@@ -41,15 +37,11 @@ import kotlinx.coroutines.CoroutineScope
 fun TopBar(
     title: String,
     scope: CoroutineScope,
-    drawerState: DrawerState,
     snackbarHostState: SnackbarHostState,
-    viewModel: MainActivityViewModel
+
 ) {
     TopBarInternal(
         title = { title.let { Text(it) } },
-        onNavIconPressed = { viewModel.openDrawer() },
-        scope = scope,
-        snackbarHostState = snackbarHostState,
         modifier = Modifier.background(Color.White)
     )
 }
@@ -61,9 +53,7 @@ fun TopBarInternal(
     scrollBehavior: TopAppBarScrollBehavior? = null,
     onNavIconPressed: () -> Unit = { },
     title: @Composable () -> Unit,
-    actions: @Composable RowScope.() -> Unit = {},
-    scope: CoroutineScope,
-    snackbarHostState: SnackbarHostState
+
 ){
     CenterAlignedTopAppBar(
         modifier = modifier,
@@ -112,7 +102,4 @@ fun TopBarPreview() {
     val drawerState = rememberDrawerState(initialValue = Closed)
     val scope = rememberCoroutineScope()
     val snackbarHostState = remember { SnackbarHostState() }
-    val title: String = "Preview TopBar"
-    val viewModel: MainActivityViewModel = viewModel(factory = MainActivityViewModel.Factory)
-    TopBar(title, scope, drawerState, snackbarHostState, viewModel)
 }

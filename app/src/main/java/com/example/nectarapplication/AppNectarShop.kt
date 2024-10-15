@@ -29,61 +29,61 @@ import kotlinx.coroutines.launch
 
 
 
-@Composable
-fun AppNectarShop(
-    viewModel: MainActivityViewModel = viewModel(factory = MainActivityViewModel.Factory),
-    drawerState: DrawerState
-) {
-    NectarApplicationTheme {
-
-        val navController = rememberNavController()
-        val scope = rememberCoroutineScope()
-        val snackbarHostState = remember { SnackbarHostState() }
-        val title: String by viewModel.titleBar.observeAsState(stringResource(R.string.title_bar_default))
-
-
-        val navigationActions = remember(navController) {
-            MainNavActions(navController, scope, drawerState, snackbarHostState)
-        }
-
-        if (drawerState.isOpen) {
-            BackHandler {
-                scope.launch {
-                    drawerState.close()
-                }
-            }
-        }
-
-            Scaffold(
-
-                containerColor = WhiteApp,
-                topBar = {
-                    TopBar(title, scope, drawerState, snackbarHostState, viewModel)
-                },
-                bottomBar = {
-                    BottomBar(navController)
-                },
-                modifier = Modifier.fillMaxSize()
-            ) { innerPadding ->
-                MainRouteNavGraph(
-                    modifier = Modifier.padding(innerPadding),
-                    navController = navController,
-                    viewModel = viewModel,
-                    openDrawer = {
-                        scope.launch {
-                            drawerState.open()
-                        }
-                    },
-                    navigationActions = navigationActions
-                )
-            }
-        }
-    }
-
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    val drawerState = rememberDrawerState(initialValue = Closed)
-    AppNectarShop(drawerState = drawerState)
-}
+//@Composable
+//fun AppNectarShop(
+//    viewModel: MainActivityViewModel = viewModel(factory = MainActivityViewModel.Factory),
+//    drawerState: DrawerState
+//) {
+//    NectarApplicationTheme {
+//
+//        val navController = rememberNavController()
+//        val scope = rememberCoroutineScope()
+//        val snackbarHostState = remember { SnackbarHostState() }
+//        val title: String by viewModel.titleBar.observeAsState(stringResource(R.string.title_bar_default))
+//
+//
+//        val navigationActions = remember(navController) {
+//            MainNavActions(navController, scope, drawerState, snackbarHostState)
+//        }
+//
+//        if (drawerState.isOpen) {
+//            BackHandler {
+//                scope.launch {
+//                    drawerState.close()
+//                }
+//            }
+//        }
+//
+//            Scaffold(
+//
+//                containerColor = WhiteApp,
+//                topBar = {
+//                    TopBar(title, scope, drawerState, snackbarHostState, viewModel)
+//                },
+//                bottomBar = {
+//                    BottomBar(navController)
+//                },
+//                modifier = Modifier.fillMaxSize()
+//            ) { innerPadding ->
+//                MainRouteNavGraph(
+//                    modifier = Modifier.padding(innerPadding),
+//                    navController = navController,
+//                    viewModel = viewModel,
+//                    openDrawer = {
+//                        scope.launch {
+//                            drawerState.open()
+//                        }
+//                    },
+//                    navigationActions = navigationActions
+//                )
+//            }
+//        }
+//    }
+//
+//
+//@Preview(showBackground = true)
+//@Composable
+//fun GreetingPreview() {
+//    val drawerState = rememberDrawerState(initialValue = Closed)
+//    AppNectarShop(drawerState = drawerState)
+//}

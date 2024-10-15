@@ -44,6 +44,7 @@ import com.example.nectarapplication.MainNavActions
 import com.example.nectarapplication.R
 import com.example.nectarapplication.data.CartProducts
 import com.example.nectarapplication.data.MyCartItems
+import com.example.nectarapplication.ui.components.BottomBar
 import com.example.nectarapplication.ui.components.ButtonCart
 import com.example.nectarapplication.ui.components.CartButtons
 import com.example.nectarapplication.ui.themes.WhiteApp
@@ -92,6 +93,7 @@ fun MyCartScreen(
         }
     }
     ButtonCart(totalPrice)
+    BottomBar(navigationActions)
 }
 
 @Composable

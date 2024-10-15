@@ -53,6 +53,7 @@ import com.example.nectarapplication.MainNavActions
 import com.example.nectarapplication.R
 import com.example.nectarapplication.data.ExploreItems
 import com.example.nectarapplication.data.Products
+import com.example.nectarapplication.ui.components.BottomBar
 
 
 @Composable
@@ -68,6 +69,7 @@ fun ExploreScreen(
         SearchBar()
         Spacer(modifier = Modifier.height(16.dp))
         CategoryGrid(exploreItems, navigationActions)
+        BottomBar(navigationActions)
     }
 }
 

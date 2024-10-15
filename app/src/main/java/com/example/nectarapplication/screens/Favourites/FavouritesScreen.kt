@@ -46,6 +46,7 @@ import com.example.nectarapplication.MainNavActions
 import com.example.nectarapplication.R
 import com.example.nectarapplication.data.CartProducts
 import com.example.nectarapplication.data.FavouritesItems
+import com.example.nectarapplication.ui.components.BottomBar
 import com.example.nectarapplication.ui.components.ButtonFav
 import com.example.nectarapplication.ui.themes.WhiteApp
 import com.example.nectarapplication.ui.themes.softGreen
@@ -90,6 +91,7 @@ fun FavouritesScreen(
         }
     }
     ButtonFav("Add All To Cart")
+    BottomBar(navigationActions)
 }
 
 @Composable

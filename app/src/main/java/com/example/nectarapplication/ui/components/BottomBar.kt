@@ -30,7 +30,8 @@ fun BottomBar(navigationActions: MainNavActions) {
         modifier = Modifier
             .fillMaxWidth()
             .shadow(8.dp, RoundedCornerShape(12.dp))
-            .clip(shape = RoundedCornerShape(12.dp),),
+            .clip(shape = RoundedCornerShape(12.dp)
+            ),
         containerColor = Color.White,
         tonalElevation = 5.dp,
 

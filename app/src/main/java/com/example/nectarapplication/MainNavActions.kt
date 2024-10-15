@@ -4,6 +4,7 @@ import androidx.compose.material3.DrawerState
 import androidx.compose.material3.SnackbarHostState
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
+import com.example.nectarapplication.data.DetailProducts
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -90,8 +91,13 @@ class MainNavActions(
             launchSingleTop = true
         }
     }
-    val navigateToDetail: () -> Unit = {
-        navController.navigate(AppDestinations.DETAIL_ROUTE) {
+    val navigateToDetail: (DetailProducts: Int) -> Unit = { product ->
+        navController.navigate(
+            AppDestinations.DETAIL_ROUTE.replace(
+                oldValue = "{detailProductId}",
+                newValue = product.toString()
+            )
+        )  {
             popUpTo(navController.graph.findStartDestination().id)
             launchSingleTop = true
         }
