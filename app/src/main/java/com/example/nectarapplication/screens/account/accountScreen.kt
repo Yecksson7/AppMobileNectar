@@ -39,7 +39,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.nectarapplication.MainNavActions
@@ -88,22 +87,6 @@ fun AccountScreen(navigationActions: MainNavActions) {
                 Divider(color = Color(0xFFE2E2E2), thickness = 1.dp)
                 barraAccount(icon = painterResource(id = R.drawable.help_icon), "Help")
                 Divider(color = Color(0xFFE2E2E2), thickness = 1.dp)
-                /*Row(
-                    modifier = Modifier
-                        .padding(vertical = 3.dp)
-                        .padding(horizontal = 40.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text(text = if (isDarkTheme) "Dark Mode" else "Light Mode")
-                    Spacer(modifier = Modifier.weight(1f))
-                    Switch(
-                        checked = isDarkTheme,
-                        onCheckedChange = { isDarkTheme = it },
-                        colors = SwitchDefaults.colors(
-                            checkedThumbColor = Color(0xFF53B175)
-                        )
-                    )
-                }*/
                 Divider(color = Color(0xFFE2E2E2), thickness = 1.dp)
                 SwitchDarkMode(isDarkTheme, onCheckedChange = { isDarkTheme = it })
                 Divider(color = Color(0xFFE2E2E2), thickness = 1.dp)
@@ -113,18 +96,18 @@ fun AccountScreen(navigationActions: MainNavActions) {
                     horizontalArrangement = Arrangement.Center
                 ) {
                     Button(
-                        onClick = { /*TODO*/ },
+                        onClick = { navigationActions.navigateToOnboarding() },
                         shape = RoundedCornerShape(10.dp),
                         modifier = Modifier.size(width = 300.dp, height = 60.dp),
                         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFF2F3F2))
                     ) {
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Image(
-                                painter = painterResource(id = R.drawable.icono_logout), // Reemplaza con el ID de tu icono
+                                painter = painterResource(id = R.drawable.icono_logout),
                                 contentDescription = null,
-                                modifier = Modifier.size(17.dp) // Ajusta el tamaño del icono según sea necesario
+                                modifier = Modifier.size(17.dp)
                             )
-                            Spacer(modifier = Modifier.size(20.dp)) // Espacio entre el icono y el texto
+                            Spacer(modifier = Modifier.size(20.dp))
                             Text(
                                 text = "Log Out",
                                 color = Color(0xFF53B175),

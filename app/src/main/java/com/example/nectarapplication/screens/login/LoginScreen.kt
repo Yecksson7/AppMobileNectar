@@ -58,7 +58,7 @@ fun LoginScreen(loginViewModel: LoginViewModel = viewModel(), navigationActions:
     var expandedState by remember { mutableStateOf(false) }
     //var indicaError by remember { mutableStateOf(false) }
 
-    // Observar los estados desde el ViewModel
+
     val isLoading by loginViewModel.isLoading.observeAsState(false)
     val loginResponse by loginViewModel.loginResponse.observeAsState(null)
     val loginError by loginViewModel.loginError.observeAsState(null)
@@ -166,7 +166,7 @@ fun LoginScreen(loginViewModel: LoginViewModel = viewModel(), navigationActions:
             }
         }
 
-        // Estado de éxito, error o cargando
+
         loginResponse?.let {
             navigationActions.navigateToLocation()
         }
