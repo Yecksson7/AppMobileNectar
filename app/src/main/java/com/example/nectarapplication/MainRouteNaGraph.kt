@@ -105,7 +105,7 @@ fun MainNavGraph(
             val itemId = backStackEntry.arguments?.getString("detailProductId")?.toInt()
             val detailProduct = DetailItems.find { it.id == itemId }
             detailProduct?.let {
-                DetailScreen(detailProduct = it)
+                DetailScreen(detailProduct = it, navigationActions)
             } ?: run {
 
             }
