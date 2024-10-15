@@ -45,6 +45,9 @@ import androidx.compose.ui.unit.sp
 import com.example.nectarapplication.MainNavActions
 import com.example.nectarapplication.R
 import com.example.nectarapplication.ui.components.BottomBar
+//import androidx.compose.foundation.layout.Arrangement
+
+
 
 //@Preview(showBackground = true)
 @Composable
@@ -134,9 +137,13 @@ fun AccountScreen(navigationActions: MainNavActions) {
 
 
             }
+            Column (modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Bottom){
+                BottomBar(navigationActions)
+            }
+
         }
     }
-    BottomBar(navigationActions)
+
 }
 
 
