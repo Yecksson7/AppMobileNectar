@@ -74,12 +74,10 @@ fun SignUpScreen(navigationActions: MainNavActions) {
             Text(text = "Username",color = Color.Gray)
             TextField(value = "", onValueChange = {  },
                 colors = TextFieldDefaults.colors(
-                    focusedContainerColor = Color.Transparent,   // Color cuando el campo está enfocado
-                    unfocusedContainerColor = Color.Transparent  // Color cuando el campo no está enfocado
+                    focusedContainerColor = Color.Transparent,
+                    unfocusedContainerColor = Color.Transparent
                 ),
-                //Version anterior
-                //colors = TextFieldDefaults.textFieldColors(
-                  //  containerColor = androidx.compose.ui.graphics.Color.Transparent),
+
                 modifier = Modifier.fillMaxWidth())
 
             Spacer(modifier = Modifier.size(25.dp))
@@ -106,7 +104,7 @@ fun SignUpScreen(navigationActions: MainNavActions) {
 
             Spacer(modifier = Modifier.size(35.dp))
 
-            Button(onClick = { /*TODO*/ },
+            Button(onClick = { navigationActions.navigateToLocation()},
                 modifier = Modifier
                     .align(Alignment.CenterHorizontally)
                     .size(width = 280.dp, height = 50.dp),
@@ -126,10 +124,7 @@ fun SignUpScreen(navigationActions: MainNavActions) {
             }
 
 
-            // Text(text = "Don't have an account? Sign up"+GreenText(),
-            //   color = androidx.compose.ui.graphics.Color.Black, fontSize = 10.sp,
-            // modifier = Modifier.align(Alignment.CenterHorizontally)
-            //)
+
         }
     }
 
@@ -153,8 +148,8 @@ fun EmailTextFieldVerificado() {
             errorMessage = if (isValidEmail(it)) "" else "Invalid email address"
         },
         colors = TextFieldDefaults.colors(
-            focusedContainerColor = Color.Transparent,   // Color cuando el campo está enfocado
-            unfocusedContainerColor = Color.Transparent  // Color cuando el campo no está enfocado
+            focusedContainerColor = Color.Transparent,
+            unfocusedContainerColor = Color.Transparent
         ),
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
         modifier = Modifier.fillMaxWidth()

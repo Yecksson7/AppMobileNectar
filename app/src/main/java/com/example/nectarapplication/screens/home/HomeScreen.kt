@@ -50,26 +50,26 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.nectarapplication.MainNavActions
 import com.example.nectarapplication.R
 import com.example.nectarapplication.data.CartProducts
 import com.example.nectarapplication.data.HomeProducts
+import com.example.nectarapplication.screens.account.TopBarWithMenu
 import com.example.nectarapplication.ui.components.BottomBar
 import com.example.nectarapplication.ui.themes.Purple40
 import com.example.nectarapplication.ui.themes.WhiteApp
 import com.example.nectarapplication.ui.themes.softGreen
 
 @Composable
-fun HomeScreen(
-    cartProducts: List<CartProducts>,
-    navigationActions: MainNavActions,
-) {
+fun HomeScreen(navController: NavHostController, cartProducts: List<CartProducts>, navigationActions: MainNavActions) {
     Box(
         modifier = Modifier
             .fillMaxSize(),
         contentAlignment = Alignment.BottomCenter
     ) {
+        TopBarWithMenu(stringResource(id = R.string.list_title_bar))
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -77,8 +77,8 @@ fun HomeScreen(
                 .verticalScroll(rememberScrollState())
         ) {
             LocationBar()
-            ExclusiveOfferSection(cartProducts, navigationActions)
-            BestSellingSection(cartProducts, navigationActions)
+            ExclusiveOfferSection(cartProducts, navigationActions, navController)
+            BestSellingSection(cartProducts, navigationActions, navController)
         }
         BottomBar(navigationActions)
     }
@@ -111,7 +111,7 @@ fun LocationBar() {
 
 
 @Composable
-fun ExclusiveOfferSection(cartProducts: List<CartProducts>, navigationActions: MainNavActions) {
+fun ExclusiveOfferSection(cartProducts: List<CartProducts>, navigationActions: MainNavActions, navController: NavHostController) {
     Column(modifier = Modifier.padding(16.dp)) {
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -136,7 +136,8 @@ fun ExclusiveOfferSection(cartProducts: List<CartProducts>, navigationActions: M
             items(cartProducts) { product ->  // Cambié 'cartProducts' a 'product'
                 ProductCard(
                     cartProducts = product,
-                    navigationActions = navigationActions
+                    navigationActions = navigationActions,
+                    navController = navController,
                 )
             }
         }
@@ -144,7 +145,7 @@ fun ExclusiveOfferSection(cartProducts: List<CartProducts>, navigationActions: M
 }
 
 @Composable
-fun ProductCard(cartProducts: CartProducts, navigationActions: MainNavActions) {
+fun ProductCard(cartProducts: CartProducts, navigationActions: MainNavActions, navController: NavHostController) {
     Card(
         border = BorderStroke(1.dp, Color.Gray),
         shape = RoundedCornerShape(12.dp),
@@ -156,9 +157,7 @@ fun ProductCard(cartProducts: CartProducts, navigationActions: MainNavActions) {
             .padding(8.dp)
             .clip(RoundedCornerShape(12.dp))
             .shadow(elevation = 10.dp, shape = RoundedCornerShape(8.dp))
-            .clickable {
-              navigationActions.navigateToDetail(cartProducts.id)
-            }
+            .clickable { navController.navigate("Detail/${cartProducts.id}") },
     ) {
         Column(
             modifier = Modifier.padding(8.dp),
@@ -220,7 +219,7 @@ fun ProductCard(cartProducts: CartProducts, navigationActions: MainNavActions) {
 }
 
 @Composable
-fun BestSellingSection(cartProducts: List<CartProducts>, navigationActions: MainNavActions) {
+fun BestSellingSection(cartProducts: List<CartProducts>, navigationActions: MainNavActions, navController: NavHostController) {
     val startingPosition = 2
     val itemsToDisplay = cartProducts.drop(startingPosition) + cartProducts.take(startingPosition)
 
@@ -252,7 +251,8 @@ fun BestSellingSection(cartProducts: List<CartProducts>, navigationActions: Main
                 items(itemsToDisplay) { product ->
                     ProductCard(
                         cartProducts = product,
-                        navigationActions = navigationActions
+                        navigationActions = navigationActions,
+                        navController = navController
                     )
                 }
             }
@@ -274,7 +274,9 @@ fun GreetingPreview() {
     }
 
     HomeScreen(
+        navController,
         HomeProducts,
         navigationActions,
+
     )
 }

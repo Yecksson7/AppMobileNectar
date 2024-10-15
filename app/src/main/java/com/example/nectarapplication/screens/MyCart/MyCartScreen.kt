@@ -5,6 +5,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -37,6 +38,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.rememberNavController
@@ -44,6 +46,7 @@ import com.example.nectarapplication.MainNavActions
 import com.example.nectarapplication.R
 import com.example.nectarapplication.data.CartProducts
 import com.example.nectarapplication.data.MyCartItems
+import com.example.nectarapplication.screens.account.TopBarWithMenu
 import com.example.nectarapplication.ui.components.BottomBar
 import com.example.nectarapplication.ui.components.ButtonCart
 import com.example.nectarapplication.ui.components.CartButtons
@@ -57,43 +60,51 @@ fun MyCartScreen(
 ) {
     val state = rememberLazyListState()
     val totalPrice = cartProduct.sumOf { it.precio }
-
-    Column(modifier = Modifier
-        .background(WhiteApp)
-        .fillMaxSize()) {
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        HorizontalDivider(
+    Box(
+        modifier = Modifier
+            .fillMaxSize(),
+        contentAlignment = Alignment.BottomCenter
+    ) {
+        TopBarWithMenu(stringResource(id = R.string.mycart_title_bar))
+        Column(
             modifier = Modifier
-                .fillMaxWidth(), // Ancho fijo de la línea
-            color = Color.LightGray,
-        )
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxSize(),
-            state = state
+                .background(WhiteApp)
+                .fillMaxSize()
         ) {
-            items(cartProduct.chunked(4)) { productCart ->
-                productCart.forEachIndexed { index, cartProduct ->
-                    CartProduct(
-                        cartProduct = cartProduct,
-                        navigationActions = navigationActions
-                    )
-                    if (index != productCart.lastIndex) {
-                        HorizontalDivider(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(horizontal = 40.dp),
-                            color = Color.LightGray,
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            HorizontalDivider(
+                modifier = Modifier
+                    .fillMaxWidth(), // Ancho fijo de la línea
+                color = Color.LightGray,
+            )
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxSize(),
+                state = state
+            ) {
+                items(cartProduct.chunked(4)) { productCart ->
+                    productCart.forEachIndexed { index, cartProduct ->
+                        CartProduct(
+                            cartProduct = cartProduct,
+                            navigationActions = navigationActions
                         )
+                        if (index != productCart.lastIndex) {
+                            HorizontalDivider(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(horizontal = 40.dp),
+                                color = Color.LightGray,
+                            )
+                        }
                     }
                 }
             }
         }
+        ButtonCart(totalPrice)
+        BottomBar(navigationActions)
     }
-    ButtonCart(totalPrice)
-    BottomBar(navigationActions)
 }
 
 @Composable

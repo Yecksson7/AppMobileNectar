@@ -31,6 +31,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -40,6 +41,7 @@ import com.example.nectarapplication.MainNavActions
 import com.example.nectarapplication.R
 import com.example.nectarapplication.data.DetailItems
 import com.example.nectarapplication.data.DetailProducts
+import com.example.nectarapplication.screens.account.TopBarWithMenu
 import com.example.nectarapplication.ui.components.ButtonFav
 import com.example.nectarapplication.ui.components.DetailButtons
 import com.example.nectarapplication.ui.themes.WhiteApp
@@ -64,6 +66,7 @@ fun DetailScreen(
                 .size(413.6.dp, 230.44.dp)
                 .align(Alignment.Start)
         ) {
+            TopBarWithMenu(stringResource(id = R.string.detail_title_bar))
             Image(
                 painterResource(id = detailProduct.image),
                 contentDescription = "Detail Product",

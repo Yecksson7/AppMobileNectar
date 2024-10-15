@@ -29,6 +29,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.SearchBar
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
@@ -61,84 +62,90 @@ fun ExploreScreen(
     exploreItems: List<Products>,
     navigationActions: MainNavActions,
 ) {
-    Column(
+    Box(
         modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
+            .fillMaxSize(),
+        contentAlignment = Alignment.BottomCenter
     ) {
-        SearchBar()
-        Spacer(modifier = Modifier.height(16.dp))
-        CategoryGrid(exploreItems, navigationActions)
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp)
+        ) {
+            SearchBar()
+            Spacer(modifier = Modifier.height(16.dp))
+            CategoryGrid(exploreItems, navigationActions)
+        }
         BottomBar(navigationActions)
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun SearchBar() {
-    val searchBar by remember { mutableStateOf("Search Store") }
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(56.dp)
-            .clip(RoundedCornerShape(12.dp))
-            .background(Color(0xFFF4F4F4) ),
-    ) {
-        OutlinedTextField(
-            shape = RoundedCornerShape(18.dp),
-            value = "",
-            onValueChange = { },
+    @OptIn(ExperimentalMaterial3Api::class)
+    @Composable
+    fun SearchBar() {
+        val searchBar by remember { mutableStateOf("Search Store") }
+        Box(
             modifier = Modifier
-                .size(364.dp, 51.57.dp),
-            colors = TextFieldDefaults.colors(
-                focusedContainerColor = Color.LightGray,
-                unfocusedContainerColor = Color.LightGray,
-                cursorColor = Color.LightGray,
-                focusedTextColor = Color.LightGray,
-                focusedLabelColor = Color.LightGray,
-                unfocusedTextColor = Color.Gray,
-            ),
-            textStyle = LocalTextStyle.current.copy(fontSize = 16.sp),
-            singleLine = true,
-        )
-        IconButton(
-            onClick = { /* TODO: Acción del icono de búsqueda */ },
-            modifier = Modifier
-                .align(Alignment.CenterStart) // Alinear a la izquierda
-                .padding(start = 12.dp) // Espaciado para el ícono
+                .fillMaxWidth()
+                .height(56.dp)
+                .clip(RoundedCornerShape(12.dp))
+                .background(Color(0xFFF4F4F4)),
         ) {
-            Icon(
-                painter = painterResource(id = R.drawable.lupa___copia),
-                contentDescription = "lupa",
-                tint = Color.Black,
-                modifier = Modifier.size(18.21.dp, 18.21.dp)
+            OutlinedTextField(
+                shape = RoundedCornerShape(18.dp),
+                value = "",
+                onValueChange = { },
+                modifier = Modifier
+                    .size(364.dp, 51.57.dp),
+                colors = TextFieldDefaults.colors(
+                    focusedContainerColor = Color.LightGray,
+                    unfocusedContainerColor = Color.LightGray,
+                    cursorColor = Color.LightGray,
+                    focusedTextColor = Color.LightGray,
+                    focusedLabelColor = Color.LightGray,
+                    unfocusedTextColor = Color.Gray,
+                ),
+                textStyle = LocalTextStyle.current.copy(fontSize = 16.sp),
+                singleLine = true,
             )
-        }
+            IconButton(
+                onClick = { /* TODO: Acción del icono de búsqueda */ },
+                modifier = Modifier
+                    .align(Alignment.CenterStart) // Alinear a la izquierda
+                    .padding(start = 12.dp) // Espaciado para el ícono
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.lupa___copia),
+                    contentDescription = "lupa",
+                    tint = Color.Black,
+                    modifier = Modifier.size(18.21.dp, 18.21.dp)
+                )
+            }
 
-        Text(
-            text = searchBar,
-            color = Color.Gray,
-            modifier = Modifier
-                .align(Alignment.CenterStart) // Alineación a la izquierda
-                .padding(start = 60.dp) // Espaciado para evitar superposición con el ícono
-                .fillMaxWidth(),
-            fontSize = 16.sp
-        )
-
-        IconButton(
-            onClick = { /* TODO: Acción del icono de configuración */ },
-            modifier = Modifier
-                .align(Alignment.CenterEnd) // Alinear a la derecha
-                .padding(end = 30.dp)
-
-        ) {
-            Icon(
-                painterResource(id = R.drawable.iconsetting___copia),
-                contentDescription = "Settings",
-                tint = Color.Black,
-                modifier = Modifier.size(16.8.dp,17.85.dp)
+            Text(
+                text = searchBar,
+                color = Color.Gray,
+                modifier = Modifier
+                    .align(Alignment.CenterStart) // Alineación a la izquierda
+                    .padding(start = 60.dp) // Espaciado para evitar superposición con el ícono
+                    .fillMaxWidth(),
+                fontSize = 16.sp
             )
-        }
+
+            IconButton(
+                onClick = { /* TODO: Acción del icono de configuración */ },
+                modifier = Modifier
+                    .align(Alignment.CenterEnd) // Alinear a la derecha
+                    .padding(end = 30.dp)
+
+            ) {
+                Icon(
+                    painterResource(id = R.drawable.iconsetting___copia),
+                    contentDescription = "Settings",
+                    tint = Color.Black,
+                    modifier = Modifier.size(16.8.dp, 17.85.dp)
+                )
+            }
     }
 }
 
