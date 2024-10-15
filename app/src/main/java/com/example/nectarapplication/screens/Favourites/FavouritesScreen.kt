@@ -103,10 +103,19 @@ fun FavouritesScreen(
                         }
                     }
                 }
-                ButtonFav("Add All To Cart")
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(bottom = 80.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Spacer(modifier = Modifier.weight(1f))
+                    ButtonFav("Add All To Cart")
+                }
+
+                BottomBar(navigationActions = navigationActions)
             }
         }
-        BottomBar(navigationActions)
     }
 }
 

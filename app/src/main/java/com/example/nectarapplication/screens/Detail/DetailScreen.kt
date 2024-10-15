@@ -1,6 +1,5 @@
 package com.example.nectarapplication.screens.Detail
 
-import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -15,33 +14,30 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
-import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.DrawerValue.Closed
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
-import androidx.compose.material3.rememberDrawerState
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.compose.rememberNavController
 import com.example.nectarapplication.MainNavActions
 import com.example.nectarapplication.R
-import com.example.nectarapplication.data.DetailItems
 import com.example.nectarapplication.data.DetailProducts
-import com.example.nectarapplication.screens.account.TopBarWithMenu
 import com.example.nectarapplication.ui.components.ButtonFav
 import com.example.nectarapplication.ui.components.DetailButtons
 import com.example.nectarapplication.ui.themes.WhiteApp
@@ -51,7 +47,7 @@ import com.example.nectarapplication.ui.themes.naranjaEstrellas
 @Composable
 fun DetailScreen(
     detailProduct: DetailProducts,
-
+    navActions: MainNavActions
 ) {
 
     Column(
@@ -60,13 +56,15 @@ fun DetailScreen(
             .fillMaxSize()
     )
     {
+        TopBarBack(stringResource(id = R.string.detail_title_bar), navActions)
+
         Box(
             modifier = Modifier
                 .background(colorBoxDetail)
-                .size(413.6.dp, 230.44.dp)
+                .size(413.6.dp, 280.44.dp)
                 .align(Alignment.Start)
         ) {
-            TopBarWithMenu(stringResource(id = R.string.detail_title_bar))
+
             Image(
                 painterResource(id = detailProduct.image),
                 contentDescription = "Detail Product",
@@ -91,7 +89,7 @@ fun DetailScreen(
                     text = detailProduct.title,
                     color = Color.Black,
                     fontWeight = FontWeight.Bold,
-                    fontSize = 12.sp,
+                    fontSize = 14.sp,
                     modifier = Modifier
                         .padding(horizontal = 8.dp)
 
@@ -99,7 +97,7 @@ fun DetailScreen(
                 Text(
                     text = detailProduct.porcion,
                     color = Color.Gray,
-                    fontSize = 10.sp,
+                    fontSize = 12.sp,
                     modifier = Modifier
                         .padding(horizontal = 8.dp)
                 )
@@ -136,7 +134,7 @@ fun DetailScreen(
             color = Color.LightGray,
         )
         Row {
-            // Contenido principal
+
             Text(
                 text = "Product Detail",
                 color = Color.Black,
@@ -152,7 +150,7 @@ fun DetailScreen(
                 tint = Color.Black,
                 modifier = Modifier
                     .size(38.dp)
-                    .padding(8.dp) // Opcional: agregar padding para separar del borde
+                    .padding(8.dp)
             )
         }
         Text(
@@ -161,7 +159,7 @@ fun DetailScreen(
             fontSize = 12.sp,
             lineHeight = 14.sp,
             modifier = Modifier
-                .padding(6.dp) // Agregar padding si es necesario
+                .padding(6.dp)
         )
         HorizontalDivider(
             modifier = Modifier
@@ -197,7 +195,7 @@ fun DetailScreen(
                     text = "100gm",
                     fontSize = 7.sp,
                     style = MaterialTheme.typography.bodyMedium,
-                    modifier = Modifier.align(Alignment.Center) // Centrar verticalmente
+                    modifier = Modifier.align(Alignment.Center)
                 )
             }
 
@@ -252,12 +250,32 @@ fun DetailScreen(
 }
 
 
-@Preview("Explore Screen", showBackground = true)
-@Preview("Explore Screen (dark)", uiMode = UI_MODE_NIGHT_YES)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun GreetingPreview() {
-
-    DetailScreen(
-        detailProduct = DetailItems[1]
+fun TopBarBack(title: String, navActions: MainNavActions) {
+    TopAppBar(
+        title = { Text(text = title, modifier = Modifier.fillMaxWidth(), textAlign = TextAlign.Center) },
+        navigationIcon = {
+            IconButton(onClick = { navActions.navigateToHome() }) {
+                Icon(
+                    imageVector = ImageVector.vectorResource(id = R.drawable.flechaizquierda),
+                    contentDescription = "volver"
+                )
+            }
+        },
+        colors = TopAppBarDefaults.topAppBarColors(
+            containerColor = Color(0xFFFCFCFC)
+        )
     )
 }
+
+//@Preview("Explore Screen", showBackground = true)
+//@Preview("Explore Screen (dark)", uiMode = UI_MODE_NIGHT_YES)
+//@Composable
+//fun GreetingPreview() {
+//
+//    DetailScreen(
+//        detailProduct = DetailItems[1],
+//        navActions = MainNavActions()
+//    )
+//}
